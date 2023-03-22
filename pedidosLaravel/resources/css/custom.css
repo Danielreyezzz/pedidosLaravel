@@ -1,0 +1,118 @@
+#divlogo{
+    height: 50px;
+}
+#imglogo{
+    height: 50px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+nav a{
+    color: black!important;
+}
+
+a:hover{
+    color: white;
+}
+
+.formulario{
+    border: 2px solid black;
+
+    border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+    .formulario{
+        width: 95%!important;
+    }
+}
+
+.pedidos{
+    margin: 0!important;
+}
+
+.logo{
+     width: 20%;
+     margin: 0!important;
+
+}
+.logui{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.grandiv{
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.div{
+    margin: 0 2rem;
+}
+iframe{
+    width: 100%;
+    height: 100%;
+}
+@media (max-width: 780px) {
+ .grandiv{
+    display: flex;
+    flex-direction: column;
+ }
+ iframe{
+    height: 30rem;
+ }
+}
+
+@media (max-width: 1080px) {
+ table{
+    width: 90%!important;
+ }
+}
+
+li a{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+nav a:hover{
+    color: #FF003F!important;
+    text-decoration-color: black!important;
+    transition: 0.2s;
+}
+
+@media (max-width: 1080px) {
+    .margin{
+       margin-left: 2rem;
+    }
+    .margin2{
+        margin-right: 2rem;
+    }
+   }
+
+#logologin{
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    width: 30%;
+}
+
+   @media (max-width:768px){
+    #logologin{
+        width: 200px;
+        margin-top: 25%!important;
+    }
+    .formulario{
+        margin-bottom: 40%!important;
+    }
+   }
+
+.navbarColor{
+    background-color: #e7e7e7!important;
+}
+
+ul{
+    list-style: none;
+    margin: 0!important
+}
