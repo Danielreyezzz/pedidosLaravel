@@ -13,10 +13,16 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('provincia');
+            $table->string('localidad');
             $table->string('direccion');
+            $table->integer('codigo_postal');
             $table->boolean('entregado');
             $table->string('comentario');
             $table->date('hora_entrega');
+            $table->integer('bultos');
+            $table->string('peso');
+
             $table->timestamps();
         });
     }
