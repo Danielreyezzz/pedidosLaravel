@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('welcome', [OrdersController::class, 'getAllOrders']);
+Route::get('welcome', [OrdersController::class, 'getAllOrders'])->middleware(['auth', 'isAdmin']);
 
 Route::put('welcome/{id?}', [OrdersController::class, 'actualizar']) -> name('order.actualizar');
 
