@@ -63,7 +63,7 @@
                                 <tr class="text-center">
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->direccion }}</td>
-                                    <td>{{ $order->entregado }}</td>
+                                    <td>Sí</td>
                                     <td>{{ $order->comentario }}</td>
                                     <td>{{ $order->hora_entrega }}</td>
                                 </tr>

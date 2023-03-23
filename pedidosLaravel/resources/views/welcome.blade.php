@@ -63,7 +63,7 @@
                                 <tr class="text-center">
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->direccion }}</td>
-                                    <td>{{ $order->entregado }}</td>
+                                    <td>No</td>
                                     <td>{{ $order->comentario }}</td>
                                     <td>{{ $order->hora_entrega }}</td>
                                     <td><form action="{{ route('detalle', $order) }}" method="get"
