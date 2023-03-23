@@ -20,4 +20,4 @@ Route::put('welcome/{id?}', [OrdersController::class, 'actualizar']) -> name('or
 
 Route::get('finalizado', [OrdersController::class, 'getFinishedOrders']);
 
-
+Route::get('detalle/{id?}', [OrdersController::class, 'buscar']) -> name('detalle');

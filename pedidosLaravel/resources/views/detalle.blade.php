@@ -6,6 +6,11 @@
         <title>Laravel</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
         @vite(['resources/js/app.js', 'resources/css/app.scss', 'resources/css/custom.css' ])
     </head>
     <body>
@@ -16,13 +21,13 @@
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
               <ul class="row flex-row justify-content-center align-items-center">
                 <li class="nav-item logui mb-2 text-center col-lg-3">
-                  <img class="logo" src="img/Logo_QMado.png" alt="logo">
+                    <img class="logo" src="{{URL::asset('Logo_QMado_Ver2_transp.png')}}" alt="logo">
                 </li>
                 <li class="nav-item col-lg-3">
-                  <a class="nav-link text-center" href="index.html">Pedidos <span class="sr-only">(current)</span></a>
+                  <a class="nav-link text-center" href="welcome">Pedidos <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item col-lg-3">
-                  <a class="nav-link text-center" href="finalizar.html">Pedidos finalizados</a>
+                  <a class="nav-link text-center" href="finalizado">Pedidos finalizados</a>
                 </li>
                 <li class="nav-item col-lg-3 justify-content-center d-flex">
                   <div class="dropdown">
@@ -42,9 +47,9 @@
             </div>
           </nav>
           <main>
-            <h1 class="text-center pt-5">Número de pedido:</h1>
+            <h1 class="text-center pt-5">Número de pedido: {{$orders[0]->id}}</h1>
 
-            <h2 class="text-center"> Editando: </h2>
+            <h2 class="text-center">
             <div class="grandiv">
             <div class="card border-3 div" >
 
@@ -60,9 +65,14 @@
 
                   <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                       <p>Numero de bultos</p>
-                       <p>Hora de entrega</p>
-                       <p>Peso</p>
+                        @foreach ($orders as $order)
+                        <h5>Hora de entrega:</h5>
+                        <p>{{$order->hora_entrega}}</p>
+                        <h5>Bultos:</h5>
+                        <p>{{$order->bultos}}</p>
+                        <h5>Peso:</h5>
+                        <p>{{$order->peso}} kg</p>
+                        @endforeach
                     </div>
                   </div>
                 </div>
@@ -76,10 +86,17 @@
                   </div>
                   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
-                      <p>Provincia</p>
-                      <p>Localidad</p>
-                      <p>Codigo postal</p>
-                      <p>Nombre de la via</p>
+                        @foreach ($orders as $order)
+                        <h5>Provincia:</h5>
+                        <p>{{$order->provincia}}</p>
+                        <h5>Localidad:</h5>
+                        <p>{{$order->localidad}}</p>
+                        <h5>Código postal:</h5>
+                        <p>{{$order->codigo_postal}}</p>
+                        <h5>Direccion:</h5>
+                        <p>{{$order->direccion}}</p>
+
+                        @endforeach
                     </div>
                   </div>
                 </div>
@@ -94,7 +111,45 @@
                   </div>
                   <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{$order->id}}">
+                        Modificar
+                    </button>
+                </td>
+                <div class="modal fade" id="exampleModal{{$order->id}}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5>{{ $order->direccion }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST"
+                                    action="{{ route('order.actualizar', $order->id) }}">
+                                    @method('PUT')
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Entregado?</label>
+                                        <select class="form-select form-select-lg" name="entregado" id="entregado">
+                                            <option value="0" selected>No entregado</option>
+                                            <option value="1">Entregado </option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1"
+                                            class="form-label">Comentario:</label>
+                                        <input name="comentario" type="text" class="form-control"
+                                            id="exampleInputPassword1" value="{{$order->comentario}}">
+                                    </div>
+                                    <button type="submit" class="btn btn-danger">Guardar cambios</button>
+                                </form>
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
                     </div>
                   </div>
                 </div>
@@ -110,6 +165,7 @@
           <div class="container d-flex justify-content-end py-5">
           <a type="button" class="btn btn-danger" href="index.html">Volver</a>
         </div>
+
         <div class="container">
           <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">

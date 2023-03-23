@@ -20,10 +20,10 @@
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
               <ul class="row flex-row justify-content-center align-items-center">
                 <li class="nav-item logui mb-2 text-center col-lg-3">
-                  <img class="logo" src="img/Logo_QMado.png" alt="logo">
+                  <img class="logo" src="{{URL::asset('Logo_QMado_Ver2_transp.png')}}" alt="logo">
                 </li>
                 <li class="nav-item col-lg-3">
-                  <a class="nav-link text-center" href="index.html">Pedidos <span class="sr-only">(current)</span></a>
+                  <a class="nav-link text-center" href="welcome">Pedidos <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item col-lg-3">
                   <a class="nav-link text-center" href="finalizado">Pedidos finalizados</a>
@@ -60,58 +60,17 @@
                 </thead>
                 <tbody>
                     @foreach ($orders as $order)
-                                <tr>
+                                <tr class="text-center">
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->direccion }}</td>
                                     <td>{{ $order->entregado }}</td>
                                     <td>{{ $order->comentario }}</td>
                                     <td>{{ $order->hora_entrega }}</td>
-                                    <td><button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal{{$order->id}}">
-                                            Edit
-                                        </button>
-                                    </td>
-                                    <div class="modal fade" id="exampleModal{{$order->id}}" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Editing
-                                                        {{ $order->direccion }}</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form method="POST"
-                                                        action="{{ route('order.actualizar', $order->id) }}">
-                                                        @method('PUT')
-                                                        @csrf
-                                                        <div class="mb-3">
-                                                            <label for="exampleInputEmail1" class="form-label">Name:</label>
-                                                            <select class="form-select form-select-lg" name="entregado" id="entregado">
-                                                                <option value="0" selected>0</option>
-                                                                <option value="1">1</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="exampleInputPassword1"
-                                                                class="form-label">Comentario:</label>
-                                                            <input name="comentario" type="text" class="form-control"
-                                                                id="exampleInputPassword1" value="{{$order->comentario}}">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-danger">Save changes</button>
-                                                    </form>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- <td><form action="{{ route('admin.eliminar', $product) }}" method="POST" class="d-inline">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                    <td><form action="{{ route('detalle', $order) }}" method="get"
+                                        class="d-inline">
+                                        <button class="btn btn-danger btn-sm" type="submit">Detalles</button>
                                     </form>
-                                </td> --}}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

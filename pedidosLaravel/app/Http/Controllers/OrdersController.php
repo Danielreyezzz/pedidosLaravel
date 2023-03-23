@@ -12,6 +12,11 @@ class OrdersController extends Controller
         $orders = Order::where('entregado', '=', '1')->get();
         return view('welcome', @compact('orders'));
     }
+    public function getAllOrders2()
+    {
+        $orders = Order::where('entregado', '=', '1')->get();
+        return view('detalle', @compact('orders'));
+    }
     public function getFinishedOrders()
     {
         $orders = Order::where('entregado', '=', '0')->get();
@@ -56,5 +61,11 @@ class OrdersController extends Controller
         $orderUpdate->comentario = $request->comentario;
         $orderUpdate->save();
         return back()->with('mensaje', 'Order updated');
+    }
+    public function buscar(Request $request)
+    {
+        $id = $request->id;
+        $orders = Order::where('id', '=',  $id )->get();
+        return view('detalle', @compact('orders'));
     }
 }
