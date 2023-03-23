@@ -24,10 +24,10 @@
                     <img class="logo" src="{{URL::asset('Logo_QMado_Ver2_transp.png')}}" alt="logo">
                 </li>
                 <li class="nav-item col-lg-3">
-                  <a class="nav-link text-center" href="welcome">Pedidos <span class="sr-only">(current)</span></a>
+                  <a class="nav-link text-center" href="../welcome">Pedidos <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item col-lg-3">
-                  <a class="nav-link text-center" href="finalizado">Pedidos finalizados</a>
+                  <a class="nav-link text-center" href="../finalizado">Pedidos finalizados</a>
                 </li>
                 <li class="nav-item col-lg-3 justify-content-center d-flex">
                   <div class="dropdown">
@@ -133,8 +133,8 @@
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Entregado?</label>
                                         <select class="form-select form-select-lg" name="entregado" id="entregado">
-                                            <option value="0" selected>No entregado</option>
-                                            <option value="1">Entregado </option>
+                                            <option value="0">No entregado</option>
+                                            <option value="1" selected>Entregado </option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -163,7 +163,7 @@
         </div>
           </main>
           <div class="container d-flex justify-content-end py-5">
-          <a type="button" class="btn btn-danger" href="index.html">Volver</a>
+          <a type="button" class="btn btn-danger" href="../welcome">Volver</a>
         </div>
 
         <div class="container">
