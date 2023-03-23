@@ -133,8 +133,8 @@
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Entregado?</label>
                                         <select class="form-select form-select-lg" name="entregado" id="entregado">
-                                            <option value="0">No entregado</option>
-                                            <option value="1" selected>Entregado </option>
+                                            <option value="0" selected>No entregado</option>
+                                            <option value="1">Entregado </option>
                                         </select>
                                     </div>
                                     <div class="mb-3">

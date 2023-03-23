@@ -9,17 +9,17 @@ class OrdersController extends Controller
 {
     public function getAllOrders()
     {
-        $orders = Order::where('entregado', '=', '1')->get();
+        $orders = Order::where('entregado', '=', '0')->get();
         return view('welcome', @compact('orders'));
     }
     public function getAllOrders2()
     {
-        $orders = Order::where('entregado', '=', '1')->get();
+        $orders = Order::where('entregado', '=', '0')->get();
         return view('detalle', @compact('orders'));
     }
     public function getFinishedOrders()
     {
-        $orders = Order::where('entregado', '=', '0')->get();
+        $orders = Order::where('entregado', '=', '1')->get();
         return view('finalizado', @compact('orders'));
     }
     public function creacion()
