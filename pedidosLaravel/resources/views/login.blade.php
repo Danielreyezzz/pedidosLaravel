@@ -42,15 +42,8 @@
         <button type="submit" class="btn btn-light btn-block mb-4 border border-3 border-dark">Submit</button>
 
       </form>
-      @if ($errors->any())
-      <div>
-          {!! implode('', $errors->all(':message'))!!}
-      </div>
-  @endif
-  @if (session('mensaje'))
-  <div class="alert alert-success mt-3">
-      {{session('mensaje')}}
-  </div>
+      @if($errors->any())
+<h4>{{$errors->first()}}</h4>
 @endif
   </div>
     </div>

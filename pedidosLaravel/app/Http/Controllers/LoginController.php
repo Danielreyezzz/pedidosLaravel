@@ -32,10 +32,16 @@ class LoginController extends Controller
         return redirect(route('welcome'));
     }
     public function contra(Request $request){
+        $old = $request->oldpassword;
+
+        if (Hash::check($old, auth()->user()->password)){
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->password)
         ]);
-        return redirect(route('welcome'));
+        return back()->with('mensaje', 'Contraseña cambiada correctamente');
+        }else{
+            return back()->withErrors(['msg' => 'Las contraseñas no coinciden']);
+        }
     }
     public function login(Request $request){
         $credentials = [
@@ -49,7 +55,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended(route('welcome'));
         }else{
-            return redirect(route('login'));
+            return back()->withErrors(['msg' => 'Credenciales incorrectas']);
         }
     }
     public function logout(Request $request){

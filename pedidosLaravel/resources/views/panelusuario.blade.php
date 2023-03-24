@@ -64,6 +64,61 @@
                                     <td>{{ auth()->user()->name }}</td>
                                     <td>{{ auth()->user()->email }}</td>
                                     <td>{{ auth()->user()->created_at }}</td>
+                                    <td>
+                                        <div class="container">
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal{{auth()->user()->id}}">
+                                                    Cambiar contraseña
+                                                </button>
+                                                <div class="modal fade" id="exampleModal{{auth()->user()->id}}" tabindex="-1"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5>Cambiar la contraseña:</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                            <div class="modal-body">
+                                                                <div class="container w-50 pt-5 mt-2 rounded bg-danger formulario pb-3 mt-5">
+                                                                    <form method="post" action="{{route('contra')}}" class="text-white">
+                                                                        @csrf
+                                                                        <div class="form-outline mb-4">
+                                                                            <label class="form-label" for="oldpassword">Antigua contraseña</label>
+                                                                              <input name="oldpassword" type="password"  class="form-control border border-3 border-dark"/>
+                                                                            </div>
+                                                                        <div class="form-outline mb-4">
+                                                                        <label class="form-label" for="password">Contraseña</label>
+                                                                          <input name="password" type="password"  class="form-control border border-3 border-dark"/>
+                                                                        </div>
+                                                                        <div class="row mb-4">
+                                                                          <div class="col d-flex justify-content-center">
+                                                                            <!-- Checkbox -->
+                                                                            {{-- <div class="form-check">
+                                                                              <input class="form-check-input border border-3 border-dark" type="checkbox" value=""  />
+                                                                              <label class="form-check-label" for="form2Example31">Recordar datos</label>
+                                                                            </div> --}}
+                                                                          </div>
+                                                                          {{-- <div class="col">
+                                                                            <a href="#!">Olvidaste la contraseña</a>
+                                                                          </div> --}}
+                                                                        </div>
+
+
+                                                                        <button type="submit" class="btn btn-light btn-block mb-4 border border-3 border-dark">Cambiar contraseña</button>
+
+                                                                      </form>
+                                                                      @if($errors->any())
+                                                                      <h4>{{$errors->first()}}</h4>
+                                                                      @endif
+                                                                  </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </td>
                                 </tr>
                         </tbody>
 
@@ -80,43 +135,6 @@
             @endif
                 </div>
 
-                <div class="container w-50 pt-5 mt-2 rounded bg-danger formulario pb-3 mt-5">
-                    <form method="post" action="{{route('contra')}}" class="container text-white">
-                        @csrf
-
-                        <div class="form-outline mb-4">
-                          <input name="password" type="password"  class="form-control border border-3 border-dark"/>
-                          <label class="form-label" for="password">Contraseña</label>
-                        </div>
-                        <div class="row mb-4">
-                          <div class="col d-flex justify-content-center">
-                            <!-- Checkbox -->
-                            {{-- <div class="form-check">
-                              <input class="form-check-input border border-3 border-dark" type="checkbox" value=""  />
-                              <label class="form-check-label" for="form2Example31">Recordar datos</label>
-                            </div> --}}
-                          </div>
-                          {{-- <div class="col">
-                            <a href="#!">Olvidaste la contraseña</a>
-                          </div> --}}
-                        </div>
-
-
-                        <button type="submit" class="btn btn-light btn-block mb-4 border border-3 border-dark">Cambiar contraseña</button>
-
-                      </form>
-                      @if ($errors->any())
-                      <div>
-                          {!! implode('', $errors->all(':message'))!!}
-                      </div>
-                  @endif
-                  @if (session('mensaje'))
-                  <div class="alert alert-success mt-3">
-                      {{session('mensaje')}}
-                  </div>
-                @endif
-                  </div>
-                    </div>
         <div class="container">
           <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">

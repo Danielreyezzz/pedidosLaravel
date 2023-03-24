@@ -53,7 +53,6 @@
           <main>
             <h1 class="text-center pt-5">Número de pedido: {{$orders[0]->id}}</h1>
 
-            <h2 class="text-center">
             <div class="grandiv">
             <div class="card border-3 div" >
 
