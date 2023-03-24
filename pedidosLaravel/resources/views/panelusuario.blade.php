@@ -37,7 +37,9 @@
                       </svg>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Perfil</a>
+                        <form action="{{route('panelusuario')}}" method="get">
+                            <input type="submit" value="Perfil" class="dropdown-item">
+                          </form>
                       <form action="{{route('logout')}}" method="get">
                       <input type="submit" value="Logout" class="dropdown-item">
                     </form>
