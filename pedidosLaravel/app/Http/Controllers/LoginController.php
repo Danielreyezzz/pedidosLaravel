@@ -19,6 +19,12 @@ class LoginController extends Controller
 
         return redirect(route('welcome'));
     }
+    public function contra(Request $request){
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->password)
+        ]);
+        return redirect(route('welcome'));
+    }
     public function login(Request $request){
         $credentials = [
             "email" => $request->email,
