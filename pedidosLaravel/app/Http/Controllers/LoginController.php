@@ -9,13 +9,25 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     public function registro(Request $request){
+
+       
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|string|email|min:0|max:255',
+            'password'=>'required|min:4',
+    
+        ]);
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
 
+
         Auth::login($user);
+
+
 
         return redirect(route('welcome'));
     }
