@@ -68,4 +68,10 @@ class OrdersController extends Controller
         $orders = Order::where('id', '=',  $id )->get();
         return view('detalle', @compact('orders'));
     }
+    public function buscarFin(Request $request)
+    {
+        $id = $request->id;
+        $orders = Order::where('id', '=',  $id )->get();
+        return view('detalleFin', @compact('orders'));
+    }
 }

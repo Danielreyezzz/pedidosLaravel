@@ -38,6 +38,9 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('finalizado', [OrdersController::class, 'getFinishedOrders']);
 
     Route::get('detalle/{id?}', [OrdersController::class, 'buscar']) -> name('detalle');
+
+    Route::get('detalleFin/{id?}', [OrdersController::class, 'buscarFin']) -> name('detalleFin');
+
     Route::get('panelusuario', [UsersController::class, 'getData'])->name('panelusuario');
 
 });

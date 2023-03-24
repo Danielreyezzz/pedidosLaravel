@@ -6,6 +6,7 @@
         <title>Laravel</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -23,10 +24,10 @@
                     <img class="logo" src="{{URL::asset('Logo_QMado_Ver2_transp.png')}}" alt="logo">
                 </li>
                 <li class="nav-item col-lg-3">
-                  <a class="nav-link text-center" href="welcome">Pedidos <span class="sr-only">(current)</span></a>
+                  <a class="nav-link text-center" href="../welcome">Pedidos <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item col-lg-3">
-                  <a class="nav-link text-center" href="finalizado">Pedidos finalizados</a>
+                  <a class="nav-link text-center" href="../finalizado">Pedidos finalizados</a>
                 </li>
                 <li class="nav-item col-lg-3 justify-content-center d-flex">
                   <div class="dropdown">
@@ -39,59 +40,82 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <form action="{{route('panelusuario')}}" method="get">
                             <input type="submit" value="Perfil" class="dropdown-item">
-                          </form>
-                      <form action="{{route('logout')}}" method="get">
-                        <input type="submit" value="Logout" class="dropdown-item">
-                      </form>
+                          </form>                      <form action="{{route('logout')}}" method="get">
+                            <form action="{{route('logout')}}" method="get">
+                                <input type="submit" value="Logout" class="dropdown-item">
+                              </form>                      </form>
                     </div>
                   </div>
                 </li>
               </ul>
             </div>
           </nav>
-           <h1 class="text-center py-5">Pedidos entregados</h1>
-           <div class=" border border-dark rounded container">
-            <table class="table container">
-                <thead class="thead-dark">
-                    <tr>
-                        <th class="text-center py-3">ID</th>
-                        <th class="text-center py-3">Dirección</th>
-                        <th class="text-center py-3">Entregado</th>
-                        <th class="text-center py-3">Comentario</th>
-                        <th class="text-center py-3">Hora de entrega</th>
+          <main>
+            <h1 class="text-center pt-5">Número de pedido: {{$orders[0]->id}}</h1>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($orders as $order)
-                                <tr class="text-center">
-                                    <td>{{ $order->id }}</td>
-                                    <td>{{ $order->direccion }}</td>
-                                    <td>Sí</td>
-                                    <td>{{ $order->comentario }}</td>
-                                    <td>{{ $order->hora_entrega }}</td>
-                                    <td><form action="{{ route('detalleFin', $order) }}" method="get"
-                                        class="d-inline">
-                                        <button class="btn btn-danger btn-sm" type="submit">Detalles</button>
-                                    </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+            <h2 class="text-center">
+            <div class="grandiv">
+            <div class="card border-3 div" >
 
-                    </table>
-                    @if ($errors->any())
-                    <div>
-                        {!! implode('', $errors->all(':message'))!!}
+              <div class="accordion p-0 " id="accordionExample">
+                <div class="card">
+                  <div class="card-header py-3" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Informacion pedido:
+                      </button>
+                    </h2>
+                  </div>
+
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        @foreach ($orders as $order)
+                        <h5>Hora de entrega:</h5>
+                        <p>{{$order->hora_entrega}}</p>
+                        <h5>Bultos:</h5>
+                        <p>{{$order->bultos}}</p>
+                        <h5>Peso:</h5>
+                        <p>{{$order->peso}} kg</p>
+                        @endforeach
                     </div>
-                @endif
-                @if (session('mensaje'))
-                <div class="alert alert-success mt-3">
-                    {{session('mensaje')}}
+                  </div>
                 </div>
-            @endif
-                </div>
+                <div class="card">
+                  <div class="card-header py-3" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Informacion de la direccion:
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        @foreach ($orders as $order)
+                        <h5>Provincia:</h5>
+                        <p>{{$order->provincia}}</p>
+                        <h5>Localidad:</h5>
+                        <p>{{$order->localidad}}</p>
+                        <h5>Código postal:</h5>
+                        <p>{{$order->codigo_postal}}</p>
+                        <h5>Direccion:</h5>
+                        <p>{{$order->direccion}}</p>
 
+                        @endforeach
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+          </div>
+
+          <div class="div">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.518826048664!2d-5.9275161847349995!3d37.40121007982922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126f0d94333a4b%3A0xc801daeab863a6fe!2sVirtualSoft%20Studios!5e0!3m2!1ses!2ses!4v1679307951312!5m2!1ses!2ses"  style="border:0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        </div>
+          </main>
+          <div class="container d-flex justify-content-end py-5">
+          <a type="button" class="btn btn-danger" href="../finalizado">Volver</a>
+        </div>
 
         <div class="container">
           <footer class="py-3 my-4">
