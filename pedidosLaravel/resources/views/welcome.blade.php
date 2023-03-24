@@ -38,7 +38,9 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item" href="#">Perfil</a>
-                      <a class="dropdown-item" href="#">Log out</a>
+                      <form action="{{route('logout')}}" method="get">
+                      <input type="submit" value="Logout" class="dropdown-item">
+                    </form>
                     </div>
                   </div>
                 </li>

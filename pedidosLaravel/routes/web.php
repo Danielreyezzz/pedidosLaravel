@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,22 +15,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('welcome', [OrdersController::class, 'getAllOrders'])->middleware(['auth', 'isAdmin']);
 
-Route::put('welcome/{id?}', [OrdersController::class, 'actualizar']) -> name('order.actualizar');
-
-Route::get('finalizado', [OrdersController::class, 'getFinishedOrders']);
-
-Route::get('detalle/{id?}', [OrdersController::class, 'buscar']) -> name('detalle');
-
-Route::get('login',function(){
-    return view('login');
-});
+Route::view('/login', 'login')->name('login');
 
 Route::get('panelusuario',function(){
     return view('panelusuario');
 });
 
+Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-sesion');
 
+Route::view('/registro', 'registro')->name('registro');
 
+Route::post('/validar-registro', [LoginController::class, 'registro'])->name('validar-registro');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => 'user'], function () {
+
+    Route::get('welcome', [OrdersController::class, 'getAllOrders'])->name('welcome');
+
+    Route::put('welcome/{id?}', [OrdersController::class, 'actualizar']) -> name('order.actualizar');
+
+    Route::get('finalizado', [OrdersController::class, 'getFinishedOrders']);
+
+    Route::get('detalle/{id?}', [OrdersController::class, 'buscar']) -> name('detalle');
+
+    Route::get('panelusuario',function(){
+    return view('panelusuario');
+});
+
+});
 

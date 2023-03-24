@@ -14,9 +14,13 @@
     <div class="container d-flex justify-content-center mt-3">
         <img src="{{URL::asset('Logo_QMado_Ver2_transp.png')}}" alt="Logo" id="logologin">
     </div>
-<div class="container w-50 pt-5 mt-5 rounded bg-danger formulario pb-4">
-    <form method="post" action="{{route('inicia-sesion')}}" class="container text-white">
+<div class="container w-50 pt-5 mt-2 rounded bg-danger formulario pb-3 mt-5">
+    <form method="post" action="{{route('validar-registro')}}" class="container text-white">
         @csrf
+        <div class="form-outline mb-4">
+          <input name="name" type="text" class="form-control border border-3 border-dark"/>
+          <label class="form-label" for="name">Nombre</label>
+        </div>
         <div class="form-outline mb-4">
           <input name="email" type="email" class="form-control border border-3 border-dark"/>
           <label class="form-label" for="email">Email</label>
