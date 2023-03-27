@@ -13,16 +13,19 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->string('id_usuario');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->int('estado');
+            $table->integer('estado');
             $table->date('fecha_entregado');
             $table->integer('id_hora_entrega');
             $table->date('fecha_entrega');
-            $table->integer('id_direccion');
+            $table->unsignedBigInteger('direccion_id');
+            $table->unsignedBigInteger('administrador_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('direccion_id')->references('id')->on('user_direccions')->onDelete('cascade');
             $table->integer('id_pago');
-            $table->integer('id_repartidor');
+            $table->foreign('administrador_id')->references('id')->on('administradors')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

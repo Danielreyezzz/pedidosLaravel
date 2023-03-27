@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('pedido_estados', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_pedido');
+            $table->unsignedBigInteger('pedido_id');
+            $table->foreign('pedido_id')->references('id')->on('pedidos')->onDelete('cascade');
             $table->integer('estado');
             $table->string('obsevacion');
             $table->date('fecha');

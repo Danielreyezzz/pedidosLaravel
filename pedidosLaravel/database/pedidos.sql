@@ -1,19 +1,106 @@
-INSERT INTO orders (provincia, localidad, direccion, codigo_postal, entregado, comentario, hora_entrega, bultos, peso) 
-VALUES 
-  ('Barcelona', 'Sant Cugat del Vallès', 'Calle Mayor 123', '08172', true, 'Pedido urgente', '2023-03-23 10:30:00', 2, 4.5),
-  ('Madrid', 'Alcalá de Henares', 'Plaza Cervantes 1', '28801', false, 'Pedido normal', '2023-03-23 12:00:00', 1, 1.2),
-  ('Valencia', 'Torrent', 'Avenida Principal 45', '46900', true, 'Pedido importante', '2023-03-23 14:15:00', 3, 10.0),
-  ('Sevilla', 'Dos Hermanas', 'Calle Sevilla 18', '41700', false, 'Pedido con descuento', '2023-03-23 16:00:00', 1, 0.8),
-    ('Madrid', 'Madrid', 'Calle Gran Vía, 1', '28013', true, 'Sin comentarios', '2023-03-23 14:30:00', 3, 10.50),
-  ('Barcelona', 'Barcelona', 'Calle Diagonal, 123', '08001', false, 'Entregar en la puerta principal', '2023-03-22 12:00:00', 2, 8.20),
-  ('Valencia', 'Valencia', 'Avenida del Puerto, 50', '46023', true, 'Recoger en tienda', '2023-03-22 10:00:00', 1, 5.00),
-  ('Sevilla', 'Sevilla', 'Plaza de España, s/n', '41004', false, 'Entregar en portería', '2023-03-21 15:00:00', 4, 12.80),
-  ('Asturias', 'Oviedo', 'Calle Uría, 15', '33003', true, 'Dejar en recepción', '2023-03-20 11:30:00', 2, 6.70),
-  ('Alicante', 'Alicante', 'Calle San Francisco, 10', '03001', false, 'Contactar antes de entregar', '2023-03-19 16:45:00', 3, 11.00),
-  ('Cádiz', 'Cádiz', 'Calle San Juan de Dios, 5', '11005', true, 'Dejar en el buzón', '2023-03-18 09:00:00', 1, 3.50);
-  
-  
-  
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 212.227.168.122:3306
+-- Tiempo de generación: 26-03-2023 a las 23:21:26
+-- Versión del servidor: 10.3.38-MariaDB-0ubuntu0.20.04.1
+-- Versión de PHP: 8.0.28
 
- 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `admin_qmado`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `administradores`
+--
+
+CREATE TABLE `administradores` (
+  `id_administrador` int(11) NOT NULL,
+  `usuario` varchar(100) NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf32 COLLATE utf32_spanish2_ci NOT NULL,
+  `contrasea` varchar(20) NOT NULL,
+  `superadmin` int(11) NOT NULL,
+  `productos` int(11) NOT NULL,
+  `pedidos` int(11) NOT NULL,
+  `almacen` int(11) NOT NULL,
+  `reparto` int(11) NOT NULL,
+  `activo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `administradores_entradas`
+--
+
+CREATE TABLE `administradores_entradas` (
+  `id_hora` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedidos`
+--
+
+CREATE TABLE `pedidos` (
+  `id_pedido` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `estado` int(11) NOT NULL COMMENT '0 Iniciado; 1 Finalizado; 2 Entregado; 3 Cancelado; 5 Preparado; 6 En reparto',
+  `fecha_entregado` date NOT NULL,
+  `id_hora_entrega` int(11) NOT NULL,
+  `fecha_entrega` date NOT NULL,
+  `id_direccion` int(11) NOT NULL,
+  `id_pago` int(11) NOT NULL,
+  `id_repartidor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedidos_estados`
+--
+
+CREATE TABLE `pedidos_estados` (
+  `id_estado` int(11) NOT NULL,
+  `id_pedido` int(11) NOT NULL,
+  `estado` int(11) NOT NULL COMMENT '1 Finalizado; 2 Entragado; 3 Cancelado; 4 Modificado; 5 Preparado; 6 En reparto',
+  `observacion` longtext CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `nombre` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `apellidos` varchar(150) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `nick` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+... (92 líneas restantes)
+)
+
+
+
 

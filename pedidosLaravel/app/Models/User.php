@@ -23,11 +23,14 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function order()
+    public function pedido()
    {
-      return $this->hasMany(Order::class)->withTimestamps();
+      return $this->hasMany(Pedido::class)->withTimestamps();
    }
-
+   public function adress()
+   {
+      return $this->hasMany(User_direccion::class)->withTimestamps();
+   }
     /**
      * The attributes that should be hidden for serialization.
      *

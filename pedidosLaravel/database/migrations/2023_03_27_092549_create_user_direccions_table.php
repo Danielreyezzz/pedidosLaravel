@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('user_direccions', function (Blueprint $table) {
             $table->id();
-            $table->string('id_usuario');
             $table->string('nombre_direccion');
             $table->string('nombre');
             $table->string('direccion');
@@ -23,6 +22,9 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('detalle');
             $table->integer('principal');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
 
             $table->timestamps();
         });

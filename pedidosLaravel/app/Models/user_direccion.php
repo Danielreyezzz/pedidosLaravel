@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class user_direccion extends Model
+class User_direccion extends Model
 {
     use HasFactory;
+    public function user()
+    {
+        return $this->BelongsTo(User::class)->withTimestamps();
+    }
 }
