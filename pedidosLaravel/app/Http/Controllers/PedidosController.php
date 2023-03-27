@@ -2,29 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+
+use App\Models\Pedido;
 use Illuminate\Http\Request;
 use Exception;
-class OrdersController extends Controller
+class PedidosController extends Controller
 {
     public function getAllOrders()
     {
-        $orders = Order::where('entregado', '=', '0')->get();
+        $orders = Pedido::where('estado', '=', '0')->get();
         return view('welcome', @compact('orders'));
     }
     public function getAllOrders2()
     {
-        $orders = Order::where('entregado', '=', '0')->get();
+        $orders = Pedido::where('estado', '=', '0')->get();
         return view('detalle', @compact('orders'));
     }
     public function getFinishedOrders()
     {
-        $orders = Order::where('entregado', '=', '1')->get();
+        $orders = Pedido::where('estado', '=', '1')->get();
         return view('finalizado', @compact('orders'));
     }
     public function creacion()
     {
-        $orders = Order::all();
+        $orders = Pedido::all();
         return view('/crear', @compact('orders'));
     }
     public function crear(Request $request)
@@ -36,7 +37,7 @@ class OrdersController extends Controller
                 'comentario' => 'required',
                 'hora_entrega' => 'required'
             ]);
-            $newOrder = new Order();
+            $newOrder = new Pedido();
             $newOrder->direccion = $request->direccion;
             $newOrder->entregado = $request->entregado;
             $newOrder->comentario = $request->comentario;
@@ -56,7 +57,7 @@ class OrdersController extends Controller
                 'comentario' => 'required',
 
             ]);
-        $orderUpdate = Order::findOrFail($id);
+        $orderUpdate = Pedido::findOrFail($id);
         $orderUpdate->entregado = $request->entregado;
         $orderUpdate->comentario = $request->comentario;
         $orderUpdate->save();
@@ -65,13 +66,13 @@ class OrdersController extends Controller
     public function buscar(Request $request)
     {
         $id = $request->id;
-        $orders = Order::where('id', '=',  $id )->get();
+        $orders = Pedido::where('id', '=',  $id )->get();
         return view('detalle', @compact('orders'));
     }
     public function buscarFin(Request $request)
     {
         $id = $request->id;
-        $orders = Order::where('id', '=',  $id )->get();
+        $orders = Pedido::where('id', '=',  $id )->get();
         return view('detalleFin', @compact('orders'));
     }
 }

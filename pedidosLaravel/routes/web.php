@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -29,21 +29,21 @@ Route::post('/validar-contra', [LoginController::class, 'contra'])->name('contra
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => 'user'], function () {
+//Route::group(['middleware' => 'user'], function () {
 
-    Route::get('welcome', [OrdersController::class, 'getAllOrders'])->name('welcome');
+    Route::get('welcome', [PedidosController::class, 'getAllOrders'])->name('welcome');
 
-    Route::put('welcome/{id?}', [OrdersController::class, 'actualizar']) -> name('order.actualizar');
+    Route::put('welcome/{id?}', [PedidosController::class, 'actualizar']) -> name('order.actualizar');
 
-    Route::get('finalizado', [OrdersController::class, 'getFinishedOrders']);
+    Route::get('finalizado', [PedidosController::class, 'getFinishedOrders']);
 
-    Route::get('detalle/{id?}', [OrdersController::class, 'buscar']) -> name('detalle');
+    Route::get('detalle/{id?}', [PedidosController::class, 'buscar']) -> name('detalle');
 
-    Route::get('detalleFin/{id?}', [OrdersController::class, 'buscarFin']) -> name('detalleFin');
+    Route::get('detalleFin/{id?}', [PedidosController::class, 'buscarFin']) -> name('detalleFin');
 
     Route::get('panelusuario', [UsersController::class, 'getData'])->name('panelusuario');
 
-});
+//});
 
 
 
