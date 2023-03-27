@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('administrador_entradas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('administrador_id');
-            $table->foreign('administrador_id')->references('id')->on('administradors')->onDelete('cascade');
             $table->date('fecha');
-            $table->date('hora');
+            $table->time('hora');
+            $table->foreign('administrador_id')->references('id')->on('administradors')->onDelete('cascade');
             $table->timestamps();
         });
     }

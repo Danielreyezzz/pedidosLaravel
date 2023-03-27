@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('pedido_id');
             $table->foreign('pedido_id')->references('id')->on('pedidos')->onDelete('cascade');
             $table->integer('estado');
-            $table->string('obsevacion');
+            $table->string('observacion');
             $table->date('fecha');
             $table->time('hora');
             $table->timestamps();

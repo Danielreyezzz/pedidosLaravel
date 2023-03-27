@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->integer('estado');
-            $table->date('fecha_entregado');
+            $table->date('fecha_entregado')->nullable();
             $table->integer('id_hora_entrega');
             $table->date('fecha_entrega');
             $table->unsignedBigInteger('direccion_id');

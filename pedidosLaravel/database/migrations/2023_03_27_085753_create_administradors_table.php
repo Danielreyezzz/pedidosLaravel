@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('usuario')->unique();
             $table->string('nombre');
             $table->string('contrasea');
-            $table->integer('superadmin');
-            $table->integer('productos');
-            $table->integer('pedidos');
-            $table->integer('almacen');
-            $table->integer('reparto');
-            $table->integer('activo');
+            $table->integer('superadmin')->default(0);
+            $table->integer('productos')->default(0);
+            $table->integer('pedidos')->default(0);
+            $table->integer('almacen')->default(0);
+            $table->integer('reparto')->default(0);
+            $table->integer('activo')->default(0);
             $table->timestamps();
         });
     }
