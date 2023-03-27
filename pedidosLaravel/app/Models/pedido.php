@@ -10,10 +10,14 @@ class Pedido extends Model
     use HasFactory;
     public function user()
     {
-        return $this->belongsTo(User::class)->withTimestamps();
+        return $this->belongsTo(User::class);
     }
     public function pedido_estado()
    {
-      return $this->hasMany(Pedido_estado::class)->withTimestamps();
+      return $this->hasMany(Pedido_estado::class);
    }
+   public function direccion()
+    {
+        return $this->belongsTo(User_direccion::class);
+    }
 }

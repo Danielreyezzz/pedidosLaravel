@@ -10,6 +10,12 @@ class User_direccion extends Model
     use HasFactory;
     public function user()
     {
-        return $this->BelongsTo(User::class)->withTimestamps();
+        return $this->BelongsTo(User::class);
     }
+    public function pedidos()
+   {
+      return $this->hasMany(Pedido::class);
+   }
+
 }
+

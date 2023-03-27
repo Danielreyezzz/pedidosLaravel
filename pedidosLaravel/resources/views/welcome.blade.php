@@ -54,10 +54,9 @@
             <table class="table container">
                 <thead class="thead-dark">
                     <tr>
-                        <th class="text-center py-3">ID</th>
-                        <th class="text-center py-3">Dirección</th>
+                        <th class="text-center py-3">Número de pedido</th>
                         <th class="text-center py-3">Entregado</th>
-                        <th class="text-center py-3">Comentario</th>
+                        <th class="text-center py-3">Dirección</th>
                         <th class="text-center py-3">Hora de entrega</th>
 
                     </tr>
@@ -65,16 +64,25 @@
                 <tbody>
                     @foreach ($orders as $order)
                                 <tr class="text-center">
-                                    <td>{{ $order->id }}</td>
-                                    <td>{{ $order->direccion }}</td>
-                                    <td>No</td>
-                                    <td>{{ $order->comentario }}</td>
-                                    <td>{{ $order->hora_entrega }}</td>
-                                    <td><form action="{{ route('detalle', $order) }}" method="get"
+                                    {{-- <td>{{ $order->pedido}}</td> --}}
+                                        @if (isset( $order->pedidos->first()->id)) {
+                                            <td>{{ $order->pedidos->first()->id ?? '' }}</td>
+                                            <td>No</td>
+                                            <td>{{$order->user_direccion->first()->direccion  }}</td>
+                                            <td><form action="{{ route('detalle', $order) }}" method="get"
+                                                class="d-inline">
+                                                <button class="btn btn-danger btn-sm" type="submit">Detalles</button>
+                                            </form>
+                                            </td>
+                                        }
+                                        @endif
+
+                                    {{-- <td>{{ $order->user_direccion }}</td> --}}
+                                    {{-- <td><form action="{{ route('detalle', $order) }}" method="get"
                                         class="d-inline">
                                         <button class="btn btn-danger btn-sm" type="submit">Detalles</button>
                                     </form>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

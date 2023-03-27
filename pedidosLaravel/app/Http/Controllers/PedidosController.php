@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Pedido;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Exception;
 class PedidosController extends Controller
 {
     public function getAllOrders()
     {
-        $orders = Pedido::where('estado', '=', '0')->get();
+        $orders = User::all();
         return view('welcome', @compact('orders'));
+       // $resultado = Pedido::join("user_direccions","user_direccions.id", "=", "pedidos.direccion_id")->distinct()->get();
+        //return view('welcome', @compact('resultado'));
+
+
+
     }
     public function getAllOrders2()
     {
