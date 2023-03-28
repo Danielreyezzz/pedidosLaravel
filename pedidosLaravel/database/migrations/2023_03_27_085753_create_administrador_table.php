@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('administradors', function (Blueprint $table) {
-            $table->id_administrador();
+        Schema::create('administrador', function (Blueprint $table) {
+            $table->id('id_administrador');
             $table->string('usuario')->unique();
             $table->string('nombre');
             $table->string('contrasea');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('almacen')->default(0);
             $table->integer('reparto')->default(0);
             $table->integer('activo')->default(0);
-            $table->timestamps();
+            
         });
     }
 

@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id_usuario();
+        Schema::create('usuario', function (Blueprint $table) {
+            $table->id('id_usuario');
             $table->string('nombre');
             $table->string('apellidos');
             $table->string('nick');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('intentos');
             $table->double('control');
 
-            $table->timestamps();
+            
         });
     }
 

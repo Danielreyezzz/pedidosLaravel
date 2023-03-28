@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('administrador_entradas', function (Blueprint $table) {
-            $table->id_hora();
-            $table->id_usuario();
-            $table->unsignedBigInteger('administrador_id');
+        Schema::create('administrador_entrada', function (Blueprint $table) {
+            $table->id('id_hora');
+            $table->integer('id_usuario');
+            
             $table->date('fecha');
             $table->time('hora');
-            $table->foreign('administrador_id')->references('id')->on('administradors')->onDelete('cascade');
-            $table->timestamps();
+            
+            
         });
     }
 
