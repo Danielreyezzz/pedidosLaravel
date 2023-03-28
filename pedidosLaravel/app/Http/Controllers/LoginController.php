@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administrador;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -13,28 +14,28 @@ class LoginController extends Controller
     {
 
         $rules = [
-            'name' => 'required',
-            'email' => 'required|string|email|min:3|max:255|regex:/(.+)@(.+)\.(.+)/i',
-            'password' => 'required|min:4',
+            'nombre' => 'required',
+            'usuario' => 'required|string|email|min:3|max:255|regex:/(.+)@(.+)\.(.+)/i',
+            'contrasea' => 'required|min:4',
         ];
         $messages = [
-            'name.required' => 'Debes agregar tu nombre',
-            'email.min' => 'El email no debe tener menos de 3 caracteres',
-            'email.required' => 'Debe agregar el email',
-            'email.regex' => 'El formato del email no es correcto',
-            'password.required' => 'Debe agregar una contraseña',
-            'password.min' => 'La contraseña no puede tener menos de 4 caracteres'
+            'nombre.required' => 'Debes agregar tu nombre',
+            'usuario.min' => 'El email no debe tener menos de 3 caracteres',
+            'usuario.required' => 'Debe agregar el email',
+            'usuario.regex' => 'El formato del email no es correcto',
+            'contrasea.required' => 'Debe agregar una contraseña',
+            'contrasea.min' => 'La contraseña no puede tener menos de 4 caracteres'
         ];
         $this->validate($request, $rules, $messages);
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
+        $administradors = new Administrador();
+        $administradors->nombre = $request->nombre;
+        $administradors->usuario = $request->usuario;
+        $administradors->contrasea = Hash::make($request->contrasea);
+        $administradors->save();
 
 
-        Auth::login($user);
+        Auth::login($administradors);
 
 
 
@@ -57,22 +58,22 @@ class LoginController extends Controller
     {
 
         $rules = [
-            'email' => 'required|string|email|min:3|max:255|regex:/(.+)@(.+)\.(.+)/i',
-            'password' => 'required|min:4',
+            'usuario' => 'required|string|email|min:3|max:255|regex:/(.+)@(.+)\.(.+)/i',
+            'contrasea' => 'required|min:4',
         ];
         $messages = [
             'name.required' => 'Debes agregar tu nombre',
-            'email.min' => 'El email no debe tener menos de 3 caracteres',
-            'email.required' => 'Debe agregar el email',
-            'email.regex' => 'El formato del email no es correcto',
-            'password.required' => 'Debe agregar una contraseña',
-            'password.min' => 'La contraseña no puede tener menos de 4 caracteres'
+            'usuario.min' => 'El email no debe tener menos de 3 caracteres',
+            'usuario.required' => 'Debe agregar el email',
+            'usuari.regex' => 'El formato del email no es correcto',
+            'contrasea.required' => 'Debe agregar una contraseña',
+            'contrasea.min' => 'La contraseña no puede tener menos de 4 caracteres'
         ];
         $this->validate($request, $rules, $messages);
 
         $credentials = [
-            "email" => $request->email,
-            "password" => $request->password,
+            "usuario" => $request->usuario,
+            "contrasea" => $request->contrasea,
         ];
 
         $remember = true;

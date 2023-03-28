@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_direccions', function (Blueprint $table) {
-            $table->id();
+            $table->id_direccion();
+            $table->id_usuario();
             $table->string('nombre_direccion');
             $table->string('nombre');
             $table->string('direccion');

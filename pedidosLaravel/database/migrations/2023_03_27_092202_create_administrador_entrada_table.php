@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('administrador_entradas', function (Blueprint $table) {
-            $table->id();
+            $table->id_hora();
+            $table->id_usuario();
             $table->unsignedBigInteger('administrador_id');
             $table->date('fecha');
             $table->time('hora');

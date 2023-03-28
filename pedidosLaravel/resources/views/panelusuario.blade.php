@@ -61,9 +61,9 @@
                 </thead>
                         <tbody>
                                 <tr class="text-center">
-                                    <td>{{ auth()->user()->name }}</td>
-                                    <td>{{ auth()->user()->email }}</td>
-                                    <td>{{ auth()->user()->created_at }}</td>
+                                    <td>{{ auth()->administradors()->nombre }}</td>
+                                    <td>{{ auth()->administradors()->usuario }}</td>
+                                    
                                     <td>
                                         <div class="container">
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"

@@ -18,16 +18,16 @@
     <form method="post" action="{{route('validar-registro')}}" class="container text-white">
         @csrf
         <div class="form-outline mb-4">
-          <input name="name" type="text" class="form-control border border-3 border-dark"/>
-          <label class="form-label" for="name">Nombre</label>
+          <input name="nombre" type="text" class="form-control border border-3 border-dark"/>
+          <label class="form-label" for="nombre">Nombre</label>
         </div>
         <div class="form-outline mb-4">
-          <input name="email" type="email" class="form-control border border-3 border-dark"/>
-          <label class="form-label" for="email">Email</label>
+          <input name="usuario" type="email" class="form-control border border-3 border-dark"/>
+          <label class="form-label" for="usuario">Email</label>
         </div>
         <div class="form-outline mb-4">
-          <input name="password" type="password"  class="form-control border border-3 border-dark"/>
-          <label class="form-label" for="password">Contraseña</label>
+          <input name="contrasea" type="password"  class="form-control border border-3 border-dark"/>
+          <label class="form-label" for="contrasea">Contraseña</label>
         </div>
         <div class="row mb-4">
           <div class="col d-flex justify-content-center">
