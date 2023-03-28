@@ -26,7 +26,6 @@ return new class extends Migration
             $table->integer('activo');
             $table->integer('intentos');
             $table->double('control');
-
             $table->timestamps();
         });
     }

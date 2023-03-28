@@ -25,7 +25,7 @@ class User extends Authenticatable
 
     public function pedidos()
    {
-      return $this->hasMany(Pedido::class);
+      return $this->belongsTo(Pedido::class);
    }
    public function user_direccion()
    {

@@ -54,10 +54,10 @@
             <table class="table container">
                 <thead class="thead-dark">
                     <tr>
-                        <th class="text-center py-3">Número de pedido</th>
+                        <th class="text-center py-3">Nombre del cliente</th>
                         <th class="text-center py-3">Entregado</th>
-                        <th class="text-center py-3">Dirección</th>
                         <th class="text-center py-3">Hora de entrega</th>
+                        <th class="text-center py-3">Dirección</th>
 
                     </tr>
                 </thead>
@@ -65,17 +65,19 @@
                     @foreach ($orders as $order)
                                 <tr class="text-center">
                                     {{-- <td>{{ $order->pedido}}</td> --}}
-                                        @if (isset( $order->pedidos->first()->id)) {
-                                            <td>{{ $order->pedidos->first()->id ?? '' }}</td>
+
+                                            <td>{{$order->nombre}}</td>
                                             <td>No</td>
-                                            <td>{{$order->user_direccion->first()->direccion  }}</td>
+                                            <td>{{$order->nombre}}</td>
+                                            <td>{{$order->user_direccion->first()->direccion}}</td>
+                                            <td>{{$order->pedidos->fecha_inicio ?? ""}}</td>
                                             <td><form action="{{ route('detalle', $order) }}" method="get"
                                                 class="d-inline">
                                                 <button class="btn btn-danger btn-sm" type="submit">Detalles</button>
                                             </form>
                                             </td>
-                                        }
-                                        @endif
+
+
 
                                     {{-- <td>{{ $order->user_direccion }}</td> --}}
                                     {{-- <td><form action="{{ route('detalle', $order) }}" method="get"

@@ -10,7 +10,7 @@ class Pedido extends Model
     use HasFactory;
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
     public function pedido_estado()
    {
@@ -18,6 +18,6 @@ class Pedido extends Model
    }
    public function direccion()
     {
-        return $this->belongsTo(User_direccion::class);
+        return $this->hasMany(User_direccion::class);
     }
 }

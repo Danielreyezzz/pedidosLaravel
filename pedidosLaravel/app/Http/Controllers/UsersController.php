@@ -9,8 +9,8 @@ class UsersController extends Controller
 {
     public function getData()
     {
-        $users = User::all();
-        return view('panelusuario', @compact('users'));
+        //$users = Productos::with('promoempresas','promo_temp_products');
+        //return view('panelusuario', @compact('users'));
     }
   public function datos (Request $request){
 
