@@ -28,14 +28,14 @@ class LoginController extends Controller
         ];
         $this->validate($request, $rules, $messages);
 
-        $administradors = new Administrador();
-        $administradors->nombre = $request->nombre;
-        $administradors->usuario = $request->usuario;
-        $administradors->contrasea = Hash::make($request->contrasea);
-        $administradors->save();
+        $administrador = new Administrador();
+        $administrador->nombre = $request->nombre;
+        $administrador->usuario = $request->usuario;
+        $administrador->contrasea = Hash::make($request->contrasea);
+        $administrador->save();
 
 
-        Auth::login($administradors);
+        //login($administrador);
 
 
 
