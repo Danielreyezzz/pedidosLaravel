@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -35,7 +36,7 @@ class LoginController extends Controller
         $administrador->save();
 
 
-        //login($administrador);
+        Auth::login($administrador);
 
 
 
@@ -57,10 +58,24 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-        $credentials = [
-            "usuario" => $request->usuario,
-            "contrasea" => $request->contrasea
+        $rules = [
+            'usuario' => 'required|min:3|max:255|regex:/(.+)@(.+)\.(.+)/i',
+            'contrasea' => 'required|min:4',
         ];
+        $messages = [
+            'usuario.min' => 'El email no debe tener menos de 3 caracteres',
+            'usuario.required' => 'Debe agregar el email',
+            'usuario.regex' => 'El formato del email no es correcto',
+            'contrasea.required' => 'Debe agregar una contraseña',
+            'contrasea.min' => 'La contraseña no puede tener menos de 4 caracteres'
+        ];
+        $this->validate($request, $rules, $messages);
+
+        $credentials = [
+            'usuario' => $request->usuario,
+            'contrasea' => $request->contrasea
+        ];
+
 
         $remember = true;
 

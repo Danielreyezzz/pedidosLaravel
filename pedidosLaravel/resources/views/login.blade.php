@@ -22,7 +22,7 @@
           <label class="form-label" for="usuario">Email</label>
         </div>
         <div class="form-outline mb-4">
-          <input name="contrasea" type="password"  class="form-control border border-3 border-dark"/>
+          <input name="contrasea" type="password" class="form-control border border-3 border-dark"/>
           <label class="form-label" for="contrasea">Contraseña</label>
         </div>
         <div class="row mb-4">

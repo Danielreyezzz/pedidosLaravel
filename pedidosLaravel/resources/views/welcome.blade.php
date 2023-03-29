@@ -64,11 +64,12 @@
                 <tbody>
                     @foreach ($users as $order)
                                 <tr class="text-center">
+                                    {{auth()->user()->contrasea}}
                                     {{-- <td>{{ $order->pedido}}</td> --}}
-                                            <td>{{$order->id_pedido}}</td>
+                                            {{-- <td>{{$order->id_pedido}}</td>
                                             <td>{{$order->estado}}</td>
                                             <td>{{$order->fecha_entrega}}</td>
-                                            <td>{{$order->direcciones->first()->direccion ?? ''}}</td>
+                                            <td>{{$order->direcciones->first()->direccion ?? ''}}</td> --}}
                                             <td><form action="{{ route('detalle', $order) }}" method="get"
                                                 class="d-inline">
                                                 <button class="btn btn-danger btn-sm" type="submit">Detalles</button>
