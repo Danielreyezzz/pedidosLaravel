@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('administrador_entrada', function (Blueprint $table) {
             $table->id('id_hora');
-            $table->integer('id_usuario');
-            
+            $table->integer('id_usuario'); 
             $table->date('fecha');
             $table->time('hora');
             

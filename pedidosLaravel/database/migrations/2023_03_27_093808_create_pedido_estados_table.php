@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('pedido_estados', function (Blueprint $table) {
             $table->id('id_estado');
             $table->integer('id_pedido');
-           
             $table->integer('estado');
             $table->string('observacion');
             $table->date('fecha');
