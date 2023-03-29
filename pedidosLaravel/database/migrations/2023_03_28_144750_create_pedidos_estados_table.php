@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('administrador_entrada', function (Blueprint $table) {
-            $table->id('id_hora');
-            $table->integer('id_usuario'); 
+        Schema::create('pedidos_estados', function (Blueprint $table) {
+            $table->id('id_estado');
+            $table->integer('id_pedido');
+            $table->integer('estado');
+            $table->string('observacion');
             $table->date('fecha');
             $table->time('hora');
-            
-            
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('administrador_entradas');
+        Schema::dropIfExists('pedidos_estados');
     }
 };

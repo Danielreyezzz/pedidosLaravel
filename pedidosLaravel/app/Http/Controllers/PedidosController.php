@@ -2,37 +2,33 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Pedido;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Pedidos;
+use App\Models\Usuarios;
+use App\Models\Usuarios_direcciones;
 use Exception;
+
 class PedidosController extends Controller
 {
-    public function getAllOrders()
+   public function getAllOrders()
     {
-        $orders = User::all();
-        return view('welcome', @compact('orders'));
-       // $resultado = Pedido::join("user_direccions","user_direccions.id", "=", "pedidos.direccion_id")->distinct()->get();
-        //return view('welcome', @compact('resultado'));
-
-
+        $users = Usuarios::where('id_usuario = 2');
+        return view('welcome', @compact('users'));
 
     }
     public function getAllOrders2()
     {
-        $orders = Pedido::where('estado', '=', '0')->get();
+        $orders = Pedidos::where('estado', '=', '0')->get();
         return view('detalle', @compact('orders'));
     }
     public function getFinishedOrders()
     {
-        $orders = Pedido::where('estado', '=', '1')->get();
+        $orders = Pedidos::where('estado', '=', '1')->get();
         return view('finalizado', @compact('orders'));
     }
     public function creacion()
     {
-        $orders = Pedido::all();
+        $orders = Pedidos::all();
         return view('/crear', @compact('orders'));
     }
     public function crear(Request $request)
@@ -44,7 +40,7 @@ class PedidosController extends Controller
                 'comentario' => 'required',
                 'hora_entrega' => 'required'
             ]);
-            $newOrder = new Pedido();
+            $newOrder = new Pedidos();
             $newOrder->direccion = $request->direccion;
             $newOrder->entregado = $request->entregado;
             $newOrder->comentario = $request->comentario;
@@ -64,7 +60,7 @@ class PedidosController extends Controller
                 'comentario' => 'required',
 
             ]);
-        $orderUpdate = Pedido::findOrFail($id);
+        $orderUpdate = Pedidos::findOrFail($id);
         $orderUpdate->entregado = $request->entregado;
         $orderUpdate->comentario = $request->comentario;
         $orderUpdate->save();
@@ -73,13 +69,13 @@ class PedidosController extends Controller
     public function buscar(Request $request)
     {
         $id = $request->id;
-        $orders = Pedido::where('id', '=',  $id )->get();
+        $orders = Pedidos::where('id', '=',  $id )->get();
         return view('detalle', @compact('orders'));
     }
     public function buscarFin(Request $request)
     {
         $id = $request->id;
-        $orders = Pedido::where('id', '=',  $id )->get();
+        $orders = Pedidos::where('id', '=',  $id )->get();
         return view('detalleFin', @compact('orders'));
     }
 }

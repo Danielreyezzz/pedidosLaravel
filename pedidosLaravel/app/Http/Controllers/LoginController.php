@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Administrador;
+use App\Models\Administradores;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -28,7 +28,7 @@ class LoginController extends Controller
         ];
         $this->validate($request, $rules, $messages);
 
-        $administrador = new Administrador();
+        $administrador = new Administradores();
         $administrador->nombre = $request->nombre;
         $administrador->usuario = $request->usuario;
         $administrador->contrasea = Hash::make($request->contrasea);
@@ -46,7 +46,7 @@ class LoginController extends Controller
         $old = $request->oldpassword;
 
         if (Hash::check($old, auth()->user()->password)) {
-            User::whereId(auth()->user()->id)->update([
+            Administradores::whereId(auth()->user()->id)->update([
                 'password' => Hash::make($request->password)
             ]);
             return back()->with('mensaje', 'Contraseña cambiada correctamente');
@@ -57,23 +57,9 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-        $rules = [
-            'usuario' => 'required|string|email|min:3|max:255|regex:/(.+)@(.+)\.(.+)/i',
-            'contrasea' => 'required|min:4',
-        ];
-        $messages = [
-            'name.required' => 'Debes agregar tu nombre',
-            'usuario.min' => 'El email no debe tener menos de 3 caracteres',
-            'usuario.required' => 'Debe agregar el email',
-            'usuari.regex' => 'El formato del email no es correcto',
-            'contrasea.required' => 'Debe agregar una contraseña',
-            'contrasea.min' => 'La contraseña no puede tener menos de 4 caracteres'
-        ];
-        $this->validate($request, $rules, $messages);
-
         $credentials = [
             "usuario" => $request->usuario,
-            "contrasea" => $request->contrasea,
+            "contrasea" => $request->contrasea
         ];
 
         $remember = true;

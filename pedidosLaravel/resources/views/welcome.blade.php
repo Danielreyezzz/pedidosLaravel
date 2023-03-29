@@ -54,31 +54,26 @@
             <table class="table container">
                 <thead class="thead-dark">
                     <tr>
-                        <th class="text-center py-3">Nombre del cliente</th>
-                        <th class="text-center py-3">Entregado</th>
-                        <th class="text-center py-3">Hora de entrega</th>
+                        <th class="text-center py-3">Nº de pedido</th>
+                        <th class="text-center py-3">Estado</th>
+                        <th class="text-center py-3">Fecha de entrega</th>
                         <th class="text-center py-3">Dirección</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orders as $order)
+                    @foreach ($users as $order)
                                 <tr class="text-center">
                                     {{-- <td>{{ $order->pedido}}</td> --}}
-
-                                            <td>{{$order->nombre}}</td>
-                                            <td>No</td>
-                                            <td>{{$order->nombre}}</td>
-                                            <td>{{$order->user_direccion->first()->direccion}}</td>
-                                            <td>{{$order->pedidos->fecha_inicio ?? ""}}</td>
+                                            <td>{{$order->id_pedido}}</td>
+                                            <td>{{$order->estado}}</td>
+                                            <td>{{$order->fecha_entrega}}</td>
+                                            <td>{{$order->direcciones->first()->direccion ?? ''}}</td>
                                             <td><form action="{{ route('detalle', $order) }}" method="get"
                                                 class="d-inline">
                                                 <button class="btn btn-danger btn-sm" type="submit">Detalles</button>
                                             </form>
                                             </td>
-
-
-
                                     {{-- <td>{{ $order->user_direccion }}</td> --}}
                                     {{-- <td><form action="{{ route('detalle', $order) }}" method="get"
                                         class="d-inline">

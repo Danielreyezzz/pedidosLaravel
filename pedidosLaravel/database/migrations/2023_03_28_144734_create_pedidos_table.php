@@ -23,8 +23,6 @@ return new class extends Migration
             $table->integer('id_direccion');
             $table->integer('id_pago');
             $table->integer('id_repartidor');
-            
-           
         });
     }
 

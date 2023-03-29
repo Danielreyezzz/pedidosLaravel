@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuario_direcciones', function (Blueprint $table) {
+        Schema::create('usuarios_direcciones', function (Blueprint $table) {
             $table->id('id_direccion');
             $table->integer('id_usuario');
             $table->string('nombre_direccion');
@@ -23,11 +23,6 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('detalle');
             $table->integer('principal');
-            
-            
-
-
-            $table->timestamps();
         });
     }
 
@@ -36,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_direccions');
+        Schema::dropIfExists('usuarios_direcciones');
     }
 };
