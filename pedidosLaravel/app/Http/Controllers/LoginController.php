@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Foreach_;
 
 class LoginController extends Controller
 {
@@ -71,20 +73,30 @@ class LoginController extends Controller
         ];
         $this->validate($request, $rules, $messages);
 
-        $credentials = [
-            'usuario' => $request->usuario,
-            'contrasea' => $request->contrasea
-        ];
+
+        $administradores = DB::table('administradores')->get();
+
+        $remember = 0;
+
+        foreach($administradores as $administrador){
+            if($administrador->usuario == $request->usuario && $administrador->contrasea == Hash::make($request->constrasea)){
+                $remember = 1;
+        }
+    }
+        if($remember = 1){
+        $request->session()->regenerate();
+            return redirect()->intended(route('welcome'));
+        }else {
+            return back()->withErrors(['msg' => 'Credenciales incorrectas']);
+        }
 
 
-        $remember = true;
-
-        if (Auth::attempt($credentials, $remember)) {
+       /* if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended(route('welcome'));
         } else {
             return back()->withErrors(['msg' => 'Credenciales incorrectas']);
-        }
+        }*/
     }
     public function logout(Request $request)
     {
