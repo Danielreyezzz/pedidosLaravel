@@ -61,16 +61,17 @@
                 </thead>
                         <tbody>
                                 <tr class="text-center">
-                                    <td>{{ auth()->administradors()->nombre }}</td>
-                                    <td>{{ auth()->administradors()->usuario }}</td>
-                                    
+                                    @foreach($administradores as $admin)
+                                    <td>{{$admin->nombre}}</td>
+                                    <td>{{$admin->usuario}}</td>
+                                    @endforeach
                                     <td>
                                         <div class="container">
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal{{auth()->user()->id}}">
+                                                    data-bs-target="#exampleModal">
                                                     Cambiar contraseña
                                                 </button>
-                                                <div class="modal fade" id="exampleModal{{auth()->user()->id}}" tabindex="-1"
+                                                <div class="modal fade" id="exampleModal" tabindex="-1"
                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,7 +42,7 @@ Route::group(['middleware' => 'verificarAutenticacion'], function () {
 
     Route::get('detalleFin/{id?}', [PedidosController::class, 'buscarFin']) -> name('detalleFin');
 
-    Route::get('panelusuario', [UsersController::class, 'getData'])->name('panelusuario');
+    Route::get('panelusuario', [UsuariosController::class, 'getData'])->name('panelusuario');
 
 });
 
