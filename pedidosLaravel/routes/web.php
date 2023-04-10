@@ -29,7 +29,7 @@ Route::post('/validar-contra', [LoginController::class, 'contra'])->name('contra
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-//Route::group(['middleware' => 'user'], function () {
+Route::group(['middleware' => 'verificarAutenticacion'], function () {
 
     Route::get('welcome', [PedidosController::class, 'getAllOrders'])->name('welcome');
 
@@ -43,7 +43,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('panelusuario', [UsersController::class, 'getData'])->name('panelusuario');
 
-//});
+});
 
 
 

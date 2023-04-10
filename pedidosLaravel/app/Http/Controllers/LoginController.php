@@ -77,11 +77,13 @@ class LoginController extends Controller
         $administradores = DB::table('administradores')->get();
 
         $remember = 0;
-
+        $_SESSION["autenticado"]= "NO";
 
         foreach($administradores as $administrador){
             if($administrador->usuario == $request->usuario && password_verify($request->contrasea, $administrador->contrasea)){
                 $remember += 1;
+                session_start();
+                $_SESSION["autenticado"]= "SI";
         }
     }
         if($remember > 0){
@@ -101,7 +103,9 @@ class LoginController extends Controller
     }
     public function logout(Request $request)
     {
-        Auth::logout();
+        session_start();
+        $_SESSION["autenticado"]= "NO";
+        session_destroy();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect(route('login'));
