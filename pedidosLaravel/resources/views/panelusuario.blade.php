@@ -64,7 +64,7 @@
                                     @foreach($administradores as $admin)
                                     <td>{{$admin->nombre}}</td>
                                     <td>{{$admin->usuario}}</td>
-                                    @endforeach
+
                                     <td>
                                         <div class="container">
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
@@ -120,6 +120,7 @@
                                                 </div>
                                             </div>
                                     </td>
+                                    @endforeach
                                 </tr>
                         </tbody>
 

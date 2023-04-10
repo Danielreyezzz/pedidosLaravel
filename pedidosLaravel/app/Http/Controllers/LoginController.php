@@ -46,16 +46,25 @@ class LoginController extends Controller
     }
     public function contra(Request $request)
     {
+        $administradores = DB::table('administradores')->get();
         $old = $request->oldpassword;
 
-        if (Hash::check($old, auth()->user()->password)) {
-            Administradores::whereId(auth()->user()->id)->update([
-                'password' => Hash::make($request->password)
-            ]);
-            return back()->with('mensaje', 'Contraseña cambiada correctamente');
-        } else {
-            return back()->withErrors(['msg' => 'Las contraseñas no coinciden']);
+        $pass = 0;
+
+        foreach ($administradores as $administrador) {
+            if (password_verify($request->oldpassword, $administrador->contrasea)) {
+                $pass += 1;
+            }
         }
+            if($pass > 0){
+                Administradores::where('id_administrador', $administrador->id_administrador)->update([
+                    'contrasea' => Hash::make($request->password)
+                ]);
+                return back()->with('mensaje', 'Contraseña cambiada correctamente');
+            } else {
+                return back()->withErrors(['msg' => 'Las contraseñas no coinciden']);
+            }
+
     }
     public function login(Request $request)
     {
@@ -77,26 +86,26 @@ class LoginController extends Controller
         $administradores = DB::table('administradores')->get();
 
         $remember = 0;
-        $_SESSION["autenticado"]= "NO";
+        $_SESSION["autenticado"] = "NO";
 
-        foreach($administradores as $administrador){
-            if($administrador->usuario == $request->usuario && password_verify($request->contrasea, $administrador->contrasea)){
+        foreach ($administradores as $administrador) {
+            if ($administrador->usuario == $request->usuario && password_verify($request->contrasea, $administrador->contrasea)) {
                 $remember += 1;
                 session_start();
-                $_SESSION["autenticado"]= "SI";
-                $_SESSION["nombre"]= $request->nombre;
-                $_SESSION["email"]= $request->usuario;
+                $_SESSION["autenticado"] = "SI";
+                $_SESSION["nombre"] = $request->nombre;
+                $_SESSION["email"] = $request->usuario;
+            }
         }
-    }
-        if($remember > 0){
-        $request->session()->regenerate();
+        if ($remember > 0) {
+            $request->session()->regenerate();
             return redirect()->intended(route('welcome'));
-        }else {
+        } else {
             return back()->withErrors(['msg' => 'Credenciales incorrectas']);
         }
 
 
-       /* if (Auth::attempt($credentials, $remember)) {
+        /* if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended(route('welcome'));
         } else {
@@ -106,7 +115,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         session_start();
-        $_SESSION["autenticado"]= "NO";
+        $_SESSION["autenticado"] = "NO";
         session_destroy();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
