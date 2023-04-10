@@ -78,12 +78,13 @@ class LoginController extends Controller
 
         $remember = 0;
 
+
         foreach($administradores as $administrador){
-            if($administrador->usuario == $request->usuario && $administrador->contrasea == Hash::make($request->constrasea)){
-                $remember = 1;
+            if($administrador->usuario == $request->usuario && password_verify($request->contrasea, $administrador->contrasea)){
+                $remember += 1;
         }
     }
-        if($remember = 1){
+        if($remember > 0){
         $request->session()->regenerate();
             return redirect()->intended(route('welcome'));
         }else {
