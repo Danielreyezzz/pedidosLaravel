@@ -82,6 +82,6 @@ class PedidosController extends Controller
     public function infpedidos(){
 
         $pedidos =Pedidos::all();
-
+        return view('welcome', @compact('pedidos'));
     }
 }
