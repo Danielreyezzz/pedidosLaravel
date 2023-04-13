@@ -61,9 +61,25 @@
                             
                           @endforeach</p>
                         </th>
-                        <th class="text-center py-3">Estado</th>
+                        <th class="text-center py-3">Repartidor</th>
+                        <p>@foreach ($pedidos as $pedido ){
+                          {{$pedido->administradores->nombre}}
+                        }
+                          
+                        @endforeach</p>
                         <th class="text-center py-3">Fecha de entrega</th>
-                        <th class="text-center py-3">Dirección</th>
+                        <p>@foreach ($pedidos as $pedido ){
+                          {{$pedido->fecha_entrega}}
+                        }
+                          
+                        @endforeach</p>
+                        <th class="text-center py-3">Dirección
+                          <p>@foreach ($pedidos as $pedido ){
+                            {{$pedido->usuario_direcciones->direccion}}
+                          }
+                            
+                          @endforeach</p>
+                        </th>
 
                     </tr>
                 </thead>
