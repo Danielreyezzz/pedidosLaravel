@@ -54,7 +54,13 @@
             <table class="table container">
                 <thead class="thead-dark">
                     <tr>
-                        <th class="text-center py-3">Nº de pedido</th>
+                        <th class="text-center py-3">Nº de pedido
+                          <p>@foreach ($pedidos as $pedido ){
+                            {{$pedido->id_pedido}}
+                          }
+                            
+                          @endforeach</p>
+                        </th>
                         <th class="text-center py-3">Estado</th>
                         <th class="text-center py-3">Fecha de entrega</th>
                         <th class="text-center py-3">Dirección</th>
