@@ -55,28 +55,29 @@
                 <thead class="thead-dark">
                     <tr>
                         <th class="text-center py-3">Nº de pedido
-                          <p>@foreach ($pedidos as $pedido ){
+                          <p>@foreach ($pedidos as $pedido )
                             {{$pedido->id_pedido}}
-                          }
+                       
+                          
                             
                           @endforeach</p>
                         </th>
                         <th class="text-center py-3">Repartidor</th>
-                        <p>@foreach ($pedidos as $pedido ){
+                        <p>@foreach ($pedidos as $pedido )
                           {{$pedido->administradores->nombre}}
-                        }
+                        
                           
                         @endforeach</p>
                         <th class="text-center py-3">Fecha de entrega</th>
-                        <p>@foreach ($pedidos as $pedido ){
+                        <p>@foreach ($pedidos as $pedido )
                           {{$pedido->fecha_entrega}}
-                        }
+                        
                           
                         @endforeach</p>
                         <th class="text-center py-3">Dirección
-                          <p>@foreach ($pedidos as $pedido ){
-                            {{$pedido->usuario_direcciones->direccion}}
-                          }
+                          <p>@foreach ($pedidos as $pedido )
+                            {{$pedido->direcciones->direccion}}
+                          
                             
                           @endforeach</p>
                         </th>

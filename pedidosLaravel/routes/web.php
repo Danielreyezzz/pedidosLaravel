@@ -44,6 +44,7 @@ Route::group(['middleware' => 'verificarAutenticacion'], function () {
 
     Route::get('panelusuario', [UsuariosController::class, 'getData'])->name('panelusuario');
 
+    Route::get('welcome', [PedidosController::class, 'infpedidos'])->name('welcome');
 });
 
 

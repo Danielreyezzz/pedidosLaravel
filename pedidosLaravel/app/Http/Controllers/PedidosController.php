@@ -81,7 +81,7 @@ class PedidosController extends Controller
 
     public function infpedidos(){
 
-        $pedidos =Pedidos::with('usuarios_direcciones','administradores')->get();
+        $pedidos =Pedidos::with('direcciones','administradores')->get();
         return view('welcome', @compact('pedidos'));
     }
 }
