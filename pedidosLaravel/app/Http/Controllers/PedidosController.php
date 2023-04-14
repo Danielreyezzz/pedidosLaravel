@@ -75,11 +75,14 @@ class PedidosController extends Controller
         return view('detalleFin', @compact('orders'));
     }
 
-    public function infpedidos(){
+    public function infpedidos()
+    {
+        $id = $_SESSION['id'];
         $administrador = Administradores::find($_SESSION['id']);
         $pedidos = $administrador->pedidos()->get();
-        $usuarios = Usuarios::find()
-        $direcciones = $usuarios->direcciones()->get();
-        return view('welcome', @compact('administrador','pedidos', 'direcciones'));
+        $direcciones = Usuarios_direcciones::whereHas('pedidos', function ($query) use ($id) {
+            $query->where('id_repartidor', $id);
+        })->get();
+        return view('welcome', @compact('administrador', 'pedidos', 'direcciones'));
     }
 }
