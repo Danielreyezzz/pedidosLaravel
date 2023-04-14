@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pedidos;
+use App\Models\Administradores;
 use App\Models\Usuarios;
 use App\Models\Usuarios_direcciones;
 use Illuminate\Support\Facades\DB;
@@ -11,16 +12,6 @@ use Exception;
 
 class PedidosController extends Controller
 {
-    public function getAllOrders()
-    {
-        $id_administrador = $_SESSION["id"];
-        $pedidos = Pedidos::whereHas('administradores', function ($query) use ($id_administrador) {
-        $query->where('id_repartidor', '=', $id_administrador);
-    })
-    ->with('administradores', 'usuarios', 'direcciones')
-    ->get();
-            return view('welcome', @compact('pedidos'));
-    }
     public function getAllOrders2()
     {
         $orders = Pedidos::where('estado', '=', '0')->get();
@@ -85,8 +76,10 @@ class PedidosController extends Controller
     }
 
     public function infpedidos(){
-
-        $pedidos =Pedidos::with('direcciones','administradores')->get();
-        return view('welcome', @compact('pedidos'));
+        $administrador = Administradores::find($_SESSION['id']);
+        $pedidos = $administrador->pedidos()->get();
+        $usuarios = Usuarios::find()
+        $direcciones = $usuarios->direcciones()->get();
+        return view('welcome', @compact('administrador','pedidos', 'direcciones'));
     }
 }

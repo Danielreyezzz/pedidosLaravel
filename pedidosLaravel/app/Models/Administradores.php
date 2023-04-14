@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Administradores extends Authenticatable
@@ -16,6 +17,10 @@ class Administradores extends Authenticatable
     public function administradores_entradas(): HasMany
     {
         return $this->hasMany(Administradores_entradas::class, 'id_usuario', 'id_administrador');
+    }
+    public function pedidos(): HasMany
+    {
+        return $this->hasMany(Pedidos::class, 'id_repartidor');
     }
 
 }
