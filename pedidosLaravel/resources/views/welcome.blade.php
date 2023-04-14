@@ -60,35 +60,41 @@
             </ul>
         </div>
     </nav>
-    <h1 class="text-center py-5">Pedidos</h1>
+    <h1 class="text-center py-5">Pedidos entregados</h1>
     <div class=" border border-dark rounded container">
         <table class="table container">
             <thead class="thead-dark">
                 <tr>
                     <th class="text-center py-3">Nº de pedido</th>
-                    <th class="text-center py-3">Estado</th>
                     <th class="text-center py-3">Fecha de entrega</th>
-                    <th class="text-center py-3">Dirección</th>
+                    <th class="text-center py-3">Nombre del cliente</th>
+                    <th class="text-center py-3">Dirección de entrega</th>
 
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    @foreach ($pedidos as $pedido)
-                        {{ $pedido->id_pedido }}
-                        {{ $pedido->fecha_entrega }}
-                    @endforeach
-                    {{ $administrador->nombre }}
-                    @foreach ($direcciones as $direccion)
-                    {{ $direccion->direccion }}
+                @foreach ($pedidos as $pedido)
+                    <tr class="text-center">
+                   <td>{{$pedido->id_pedido}}</td>
+                   <td> {{$pedido->fecha_entrega}}</td>
+                   <td> {{$pedido->nombre_usuario}}</td>
+                   <td>{{$pedido->direccion}}</td>
+                 </tr>
                 @endforeach
-                </tr>
+
             </tbody>
-            @if (session('mensaje'))
-                <div class="alert alert-success mt-3">
-                    {{ session('mensaje') }}
-                </div>
-            @endif
+
+        </table>
+        @if ($errors->any())
+            <div>
+                {!! implode('', $errors->all(':message')) !!}
+            </div>
+        @endif
+        @if (session('mensaje'))
+            <div class="alert alert-success mt-3">
+                {{ session('mensaje') }}
+            </div>
+        @endif
     </div>
 
 

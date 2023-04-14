@@ -8,6 +8,7 @@ use App\Models\Administradores;
 use App\Models\Usuarios;
 use App\Models\Usuarios_direcciones;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 use Exception;
 
 class PedidosController extends Controller
@@ -79,10 +80,12 @@ class PedidosController extends Controller
     {
         $id = $_SESSION['id'];
         $administrador = Administradores::find($_SESSION['id']);
-        $pedidos = $administrador->pedidos()->get();
-        $direcciones = Usuarios_direcciones::whereHas('pedidos', function ($query) use ($id) {
-            $query->where('id_repartidor', $id);
-        })->get();
-        return view('welcome', @compact('administrador', 'pedidos', 'direcciones'));
+        $pedidos = Pedidos::where('id_repartidor', $id)
+            ->leftJoin('usuarios', 'pedidos.id_usuario', '=', 'usuarios.id_usuario')
+            ->leftJoin('usuarios_direcciones', 'pedidos.id_direccion', '=', 'usuarios_direcciones.id_direccion')
+            ->select('pedidos.id_pedido', 'pedidos.fecha_entrega', 'usuarios.nombre as nombre_usuario', 'usuarios_direcciones.direccion')
+            ->get();
+
+        return view('welcome', @compact('pedidos'));
     }
 }
