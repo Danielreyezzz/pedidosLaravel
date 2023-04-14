@@ -6,15 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Pedidos;
 use App\Models\Usuarios;
 use App\Models\Usuarios_direcciones;
+use Illuminate\Support\Facades\DB;
 use Exception;
 
 class PedidosController extends Controller
 {
-   public function getAllOrders()
+    public function getAllOrders()
     {
-        $users = Usuarios::where('id_usuario = 2');
-        return view('welcome', @compact('users'));
-
+        $id_administrador = $_SESSION["id"];
+        $pedidos = Pedidos::whereHas('administradores', function ($query) use ($id_administrador) {
+        $query->where('id_repartidor', '=', $id_administrador);
+    })
+    ->with('administradores', 'usuarios', 'direcciones')
+    ->get();
+            return view('welcome', @compact('pedidos'));
     }
     public function getAllOrders2()
     {
@@ -56,10 +61,10 @@ class PedidosController extends Controller
 
         $request->validate([
 
-                'entregado' => 'required',
-                'comentario' => 'required',
+            'entregado' => 'required',
+            'comentario' => 'required',
 
-            ]);
+        ]);
         $orderUpdate = Pedidos::findOrFail($id);
         $orderUpdate->entregado = $request->entregado;
         $orderUpdate->comentario = $request->comentario;
@@ -69,13 +74,13 @@ class PedidosController extends Controller
     public function buscar(Request $request)
     {
         $id = $request->id;
-        $orders = Pedidos::where('id', '=',  $id )->get();
+        $orders = Pedidos::where('id', '=',  $id)->get();
         return view('detalle', @compact('orders'));
     }
     public function buscarFin(Request $request)
     {
         $id = $request->id;
-        $orders = Pedidos::where('id', '=',  $id )->get();
+        $orders = Pedidos::where('id', '=',  $id)->get();
         return view('detalleFin', @compact('orders'));
     }
 }

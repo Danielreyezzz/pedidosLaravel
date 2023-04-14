@@ -93,6 +93,7 @@ class LoginController extends Controller
                 $remember += 1;
                 session_start();
                 $_SESSION["autenticado"] = "SI";
+                $_SESSION["id"] = $administrador->id_administrador;
                 $_SESSION["nombre"] = $request->nombre;
                 $_SESSION["email"] = $request->usuario;
             }
