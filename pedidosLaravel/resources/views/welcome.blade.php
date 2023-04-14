@@ -85,6 +85,7 @@
             <div>
                 {!! implode('', $errors->all(':message')) !!}
             </div>
+<<<<<<< HEAD
         @endif
         @if (session('mensaje'))
             <div class="alert alert-success mt-3">
@@ -92,6 +93,62 @@
             </div>
         @endif
     </div>
+=======
+          </nav>
+           <h1 class="text-center py-5">Pedidos</h1>
+           <div class=" border border-dark rounded container">
+            <table class="table container">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center py-3">Nº de pedido
+                          <p>@foreach ($pedidos as $pedido )
+                            {{$pedido->id_pedido}}
+                       
+                          
+                            
+                          @endforeach</p>
+                        </th>
+                        <th class="text-center py-3">Repartidor</th>
+                        {{-- <p>@foreach ($pedidos as $pedido )
+                          {{$pedido->administradores->nombre}}
+                        
+                          
+                        @endforeach</p> --}}
+                        <th class="text-center py-3">Fecha de entrega</th>
+                        {{-- <p>@foreach ($pedidos as $pedido )
+                          {{$pedido->fecha_entrega}}
+                        
+                          
+                        @endforeach</p> --}}
+                        <th class="text-center py-3">Dirección
+                          <p>@foreach ($pedidos as $pedido )
+                            {{$pedido->direcciones->direccion}}
+                          
+                            
+                          @endforeach</p>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                                <tr class="text-center">
+                                    {{-- <td>{{auth()->user()->nombre }}</td> --}}
+                                </tr>
+                        </tbody>
+
+                    </table>
+                    @if ($errors->any())
+                    <div>
+                        {!! implode('', $errors->all(':message'))!!}
+                    </div>
+                @endif
+                @if (session('mensaje'))
+                <div class="alert alert-success mt-3">
+                    {{session('mensaje')}}
+                </div>
+            @endif
+                </div>
+>>>>>>> 2b8d0915ad90bf9257a33fcbba0d240dd2bf0eb4
 
 
     <div class="container">

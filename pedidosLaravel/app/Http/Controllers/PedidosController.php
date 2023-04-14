@@ -83,4 +83,10 @@ class PedidosController extends Controller
         $orders = Pedidos::where('id', '=',  $id)->get();
         return view('detalleFin', @compact('orders'));
     }
+
+    public function infpedidos(){
+
+        $pedidos =Pedidos::with('direcciones','administradores')->get();
+        return view('welcome', @compact('pedidos'));
+    }
 }
