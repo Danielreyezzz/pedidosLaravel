@@ -40,8 +40,6 @@ class LoginController extends Controller
 
         Auth::login($administrador);
 
-
-
         return redirect(route('welcome'));
     }
     public function contra(Request $request)

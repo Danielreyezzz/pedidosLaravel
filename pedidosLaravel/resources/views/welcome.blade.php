@@ -60,7 +60,7 @@
             </ul>
         </div>
     </nav>
-    <h1 class="text-center py-5">Pedidos entregados</h1>
+    <h1 class="text-center py-5">Pedidos</h1>
     <div class=" border border-dark rounded container">
         <table class="table container">
             <thead class="thead-dark">

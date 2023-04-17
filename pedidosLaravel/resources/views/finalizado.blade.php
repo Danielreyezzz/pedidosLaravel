@@ -49,49 +49,42 @@
               </ul>
             </div>
           </nav>
-           <h1 class="text-center py-5">Pedidos entregados</h1>
-           <div class=" border border-dark rounded container">
-            <table class="table container">
-                <thead class="thead-dark">
-                    <tr>
-                        <th class="text-center py-3">ID</th>
-                        <th class="text-center py-3">Dirección</th>
-                        <th class="text-center py-3">Entregado</th>
-                        <th class="text-center py-3">Comentario</th>
-                        <th class="text-center py-3">Hora de entrega</th>
+          <h1 class="text-center py-5">Pedidos entregados</h1>
+          <div class=" border border-dark rounded container">
+              <table class="table container">
+                  <thead class="thead-dark">
+                      <tr>
+                          <th class="text-center py-3">Nº de pedido</th>
+                          <th class="text-center py-3">Fecha de entrega</th>
+                          <th class="text-center py-3">Nombre del cliente</th>
+                          <th class="text-center py-3">Dirección de entrega</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($orders as $order)
-                                <tr class="text-center">
-                                    <td>{{ $order->id }}</td>
-                                    <td>{{ $order->direccion }}</td>
-                                    <td>Sí</td>
-                                    <td>{{ $order->comentario }}</td>
-                                    <td>{{ $order->hora_entrega }}</td>
-                                    <td><form action="{{ route('detalleFin', $order) }}" method="get"
-                                        class="d-inline">
-                                        <button class="btn btn-danger btn-sm" type="submit">Detalles</button>
-                                    </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach ($pedidos as $pedido)
+                          <tr class="text-center">
+                         <td>{{$pedido->id_pedido}}</td>
+                         <td> {{$pedido->fecha_entrega}}</td>
+                         <td> {{$pedido->nombre_usuario}}</td>
+                         <td>{{$pedido->direccion}}</td>
+                       </tr>
+                      @endforeach
 
-                    </table>
-                    @if ($errors->any())
-                    <div>
-                        {!! implode('', $errors->all(':message'))!!}
-                    </div>
-                @endif
-                @if (session('mensaje'))
-                <div class="alert alert-success mt-3">
-                    {{session('mensaje')}}
-                </div>
-            @endif
-                </div>
+                  </tbody>
 
+              </table>
+              @if ($errors->any())
+                  <div>
+                      {!! implode('', $errors->all(':message')) !!}
+                  </div>
+              @endif
+              @if (session('mensaje'))
+                  <div class="alert alert-success mt-3">
+                      {{ session('mensaje') }}
+                  </div>
+              @endif
+          </div>
 
         <div class="container">
           <footer class="py-3 my-4">

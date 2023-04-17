@@ -20,8 +20,16 @@ class PedidosController extends Controller
     }
     public function getFinishedOrders()
     {
-        $orders = Pedidos::where('estado', '=', '1')->get();
-        return view('finalizado', @compact('orders'));
+        $id = $_SESSION['id'];
+        $administrador = Administradores::find($_SESSION['id']);
+        $pedidos = Pedidos::where('id_repartidor', $id)
+            ->leftJoin('usuarios', 'pedidos.id_usuario', '=', 'usuarios.id_usuario')
+            ->leftJoin('usuarios_direcciones', 'pedidos.id_direccion', '=', 'usuarios_direcciones.id_direccion')
+            ->leftJoin('pedidos_estados', 'pedidos_estados.id_pedido', '=', 'pedidos.id_pedido')
+            ->select('pedidos.id_pedido', 'pedidos.fecha_entrega', 'usuarios.nombre as nombre_usuario', 'usuarios_direcciones.direccion')
+            ->where('pedidos_estados.estado', 1)
+            ->get();
+        return view('finalizado', @compact('pedidos'));
     }
     public function creacion()
     {
@@ -83,7 +91,9 @@ class PedidosController extends Controller
         $pedidos = Pedidos::where('id_repartidor', $id)
             ->leftJoin('usuarios', 'pedidos.id_usuario', '=', 'usuarios.id_usuario')
             ->leftJoin('usuarios_direcciones', 'pedidos.id_direccion', '=', 'usuarios_direcciones.id_direccion')
+            ->leftJoin('pedidos_estados', 'pedidos_estados.id_pedido', '=', 'pedidos.id_pedido')
             ->select('pedidos.id_pedido', 'pedidos.fecha_entrega', 'usuarios.nombre as nombre_usuario', 'usuarios_direcciones.direccion')
+            ->where('pedidos_estados.estado', 0)
             ->get();
 
         return view('welcome', @compact('pedidos'));
