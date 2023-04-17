@@ -125,36 +125,37 @@
                   <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
+                        data-bs-target="#exampleModal{{$pedidos[0]->id_estado}}">
                         Modificar
                     </button>
                 </td>
-                {{-- <div class="modal fade" id="exampleModal" tabindex="-1"
+                <div class="modal fade" id="exampleModal{{$pedidos[0]->id_estado}}" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <h5>{{ $order->direccion }}</h5>
+                            <h5></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form method="POST"
-                                    action="{{ route('order.actualizar', $order->id) }}">
+                                    action="{{ route('order.actualizar', ['id' => $pedidos[0]->id_estado]) }}">
                                     @method('PUT')
                                     @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Entregado?</label>
-                                        <select class="form-select form-select-lg" name="entregado" id="entregado">
+                                        <select class="form-select form-select-lg" name="estado" id="estado">
                                             <option value="0" selected>No entregado</option>
                                             <option value="1">Entregado </option>
+
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1"
-                                            class="form-label">Comentario:</label>
-                                        <input name="comentario" type="text" class="form-control"
-                                            id="exampleInputPassword1" value="{{$order->comentario}}">
+                                            class="form-label">Observacion:</label>
+                                        <input name="observacion" type="text" class="form-control"
+                                            id="exampleInputPassword1" value="{{$pedidos[0]->observacion}}">
                                     </div>
                                     <button type="submit" class="btn btn-danger">Guardar cambios</button>
                                 </form>
@@ -162,7 +163,7 @@
 
                         </div>
                     </div>
-                </div> --}}
+                </div>
                     </div>
                   </div>
                 </div>
