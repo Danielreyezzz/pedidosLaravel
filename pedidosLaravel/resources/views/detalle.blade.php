@@ -70,13 +70,11 @@
                   <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         @foreach ($pedidos as $order)
-                        <h5 class=" d-flex flex-column justify-content-end">ID</h5>
+                        <h5 class=" d-flex flex-column justify-content-end">ID:</h5>
                         <p>{{$order->id_pedido}}</p>
-                        <h5>Bultos:</h5>
+                        <h5>Fecha inicio:</h5>
                         <p>{{$order->fecha_inicio}}</p>
-                        <h5>Peso:</h5>
-                        <p>{{$order->fecha_fin}}</p>
-                        <h5>Peso:</h5>
+                        <h5>Fecha fin::</h5>
                         <p>{{$order->fecha_entrega}}</p>
 
                         @endforeach
@@ -96,18 +94,18 @@
                         @foreach ($pedidos as $order)
                         <h5>Provincia:</h5>
                         <p>{{$order->provincia}}</p>
-                        <h5>Localidad:</h5>
+                        <h5>Poblacion:</h5>
                         <p>{{$order->poblacion}}</p>
-                        <h5>Código postal:</h5>
+                        <h5>Telefono:</h5>
                         <p>{{$order->telefono}}</p>
                         <h5>Direccion:</h5>
                         <p>{{$order->direccion}}</p>
-                        <h5>Peso:</h5>
+                        <h5>Nombre:</h5>
                         <p>{{$order->nombre_usuario}}</p>
-                        <h5>Peso:</h5>
-                        <p>{{$order->fecha_apellidos}}</p>
-                        <h5>Peso:</h5>
-                        <p>{{$order->fecha_email}}</p>
+                        <h5>Apellidos:</h5>
+                        <p>{{$order->apellidos}}</p>
+                        <h5>Email:</h5>
+                        <p>{{$order->email}}</p>
 
                         @endforeach
                     </div>
