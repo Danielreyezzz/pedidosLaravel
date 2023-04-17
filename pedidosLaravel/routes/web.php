@@ -32,8 +32,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'verificarAutenticacion'], function () {
 
-    Route::get('welcome', [PedidosController::class, 'getAllOrders'])->name('welcome');
-
     Route::put('detalle/{id}', [PedidosController::class, 'actualizar']) -> name('order.actualizar');
 
     Route::get('finalizado', [PedidosController::class, 'getFinishedOrders']);
