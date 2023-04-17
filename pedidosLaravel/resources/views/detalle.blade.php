@@ -51,7 +51,7 @@
             </div>
           </nav>
           <main>
-            <h1 class="text-center pt-5">Número de pedido: {{$orders[0]->id}}</h1>
+            <h1 class="text-center pt-5">Número de pedido: </h1>
 
 
             <div class="grandiv">
@@ -78,10 +78,7 @@
                         <p>{{$order->fecha_fin}}</p>
                         <h5>Peso:</h5>
                         <p>{{$order->fecha_entrega}}</p>
-                      
-                      
-                       
-                       
+
                         @endforeach
                     </div>
                   </div>
@@ -128,11 +125,11 @@
                   <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal{{$order->id}}">
+                        data-bs-target="#exampleModal">
                         Modificar
                     </button>
                 </td>
-                <div class="modal fade" id="exampleModal{{$order->id}}" tabindex="-1"
+                {{-- <div class="modal fade" id="exampleModal" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -165,7 +162,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
                     </div>
                   </div>
                 </div>

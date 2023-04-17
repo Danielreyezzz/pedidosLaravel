@@ -38,7 +38,7 @@ Route::group(['middleware' => 'verificarAutenticacion'], function () {
 
     Route::get('finalizado', [PedidosController::class, 'getFinishedOrders']);
 
-    Route::get('detalle/{id?}', [PedidosController::class, 'buscar']) -> name('detalle');
+    Route::get('detalle/{id}', [PedidosController::class, 'buscar']) -> name('detalle');
 
     Route::get('detalleFin/{id?}', [PedidosController::class, 'buscarFin']) -> name('detalleFin');
 
