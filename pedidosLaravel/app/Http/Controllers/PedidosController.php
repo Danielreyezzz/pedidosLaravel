@@ -73,9 +73,18 @@ class PedidosController extends Controller
     }
     public function buscar(Request $request)
     {
-        $id = $request->id;
-        $orders = Pedidos::where('id', '=',  $id)->get();
-        return view('detalle', @compact('orders'));
+        $id = $_SESSION['id'];
+        $administrador = Administradores::find($_SESSION['id']);
+
+        $pedidos = Pedidos::where('id_repartidor', $id)
+            ->leftJoin('usuarios', 'pedidos.id_usuario', '=', 'usuarios.id_usuario')
+            ->leftJoin('usuarios_direcciones', 'pedidos.id_direccion', '=', 'usuarios_direcciones.id_direccion')
+            ->leftJoin('pedidos_estados', 'pedidos_estados.id_pedido', '=', 'pedidos.id_pedido')
+            ->select('pedidos.id_pedido', 'pedidos.fecha_inicio', 'pedidos.fecha_fin', 'pedidos.fecha_entrega', 'usuarios.nombre as nombre_usuario','usuarios.apellidos','usuarios.email', 'usuarios_direcciones.direccion','usuarios_direcciones.provincia','usuarios_direcciones.poblacion','usuarios_direcciones.telefono')
+            ->where('pedidos_estados.estado', 0)
+            ->get();
+
+        return view('detalle', @compact('pedidos'));
     }
     public function buscarFin(Request $request)
     {

@@ -69,13 +69,19 @@
 
                   <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                        @foreach ($orders as $order)
-                        <h5 class=" d-flex flex-column justify-content-end">Hora de entrega:</h5>
-                        <p>{{$order->hora_entrega}}</p>
+                        @foreach ($pedidos as $order)
+                        <h5 class=" d-flex flex-column justify-content-end">ID</h5>
+                        <p>{{$order->id_pedido}}</p>
                         <h5>Bultos:</h5>
-                        <p>{{$order->bultos}}</p>
+                        <p>{{$order->fecha_inicio}}</p>
                         <h5>Peso:</h5>
-                        <p>{{$order->peso}} kg</p>
+                        <p>{{$order->fecha_fin}}</p>
+                        <h5>Peso:</h5>
+                        <p>{{$order->fecha_entrega}}</p>
+                      
+                      
+                       
+                       
                         @endforeach
                     </div>
                   </div>
@@ -90,15 +96,21 @@
                   </div>
                   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
-                        @foreach ($orders as $order)
+                        @foreach ($pedidos as $order)
                         <h5>Provincia:</h5>
                         <p>{{$order->provincia}}</p>
                         <h5>Localidad:</h5>
-                        <p>{{$order->localidad}}</p>
+                        <p>{{$order->poblacion}}</p>
                         <h5>Código postal:</h5>
-                        <p>{{$order->codigo_postal}}</p>
+                        <p>{{$order->telefono}}</p>
                         <h5>Direccion:</h5>
                         <p>{{$order->direccion}}</p>
+                        <h5>Peso:</h5>
+                        <p>{{$order->nombre_usuario}}</p>
+                        <h5>Peso:</h5>
+                        <p>{{$order->fecha_apellidos}}</p>
+                        <h5>Peso:</h5>
+                        <p>{{$order->fecha_email}}</p>
 
                         @endforeach
                     </div>
