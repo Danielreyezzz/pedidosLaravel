@@ -103,9 +103,9 @@
                         <h5>Nombre:</h5>
                         <p>{{$order->nombre_usuario}}</p>
                         <h5>Apellidos:</h5>
-                        <p>{{$order->fecha_apellidos}}</p>
+                        <p>{{$order->apellidos}}</p>
                         <h5>Email:</h5>
-                        <p>{{$order->fecha_email}}</p>
+                        <p>{{$order->email}}</p>
 
                         @endforeach
                     </div>
