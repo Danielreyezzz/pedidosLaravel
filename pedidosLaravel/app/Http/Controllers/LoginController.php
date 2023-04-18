@@ -92,8 +92,10 @@ class LoginController extends Controller
                 session_start();
                 $_SESSION["autenticado"] = "SI";
                 $_SESSION["id"] = $administrador->id_administrador;
-                $_SESSION["nombre"] = $request->nombre;
-                $_SESSION["email"] = $request->usuario;
+                $_SESSION["nombre"] = $administrador->nombre;
+                $_SESSION["email"] = $administrador->usuario;
+                $_SESSION["reparto"] = $administrador->reparto;
+                $_SESSION["admin"] = $administrador->superadmin;
             }
         }
         if ($remember > 0) {
