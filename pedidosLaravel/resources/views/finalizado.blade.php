@@ -68,6 +68,7 @@
                          <td> {{$pedido->fecha_entrega}}</td>
                          <td> {{$pedido->nombre_usuario}}</td>
                          <td>{{$pedido->direccion}}</td>
+                         <td><a href="{{ route('detalleFin', $pedido->id_pedido) }}" class="btn btn-danger">Ver detalles</a></td>
                        </tr>
                       @endforeach
 

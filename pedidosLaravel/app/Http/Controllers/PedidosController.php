@@ -94,11 +94,21 @@ class PedidosController extends Controller
 
         return view('detalle', @compact('pedidos'));
     }
-    public function buscarFin(Request $request)
+    public function buscarFin($id)
     {
-        $id = $request->id;
-        $orders = Pedidos::where('id', '=',  $id)->get();
-        return view('detalleFin', @compact('orders'));
+        // $id = $request->id;
+        // $orders = Pedidos::where('id', '=',  $id)->get();
+        // return view('detalleFin', @compact('orders'));
+        $pedidos = Pedidos::findOrFail($id)
+            ->leftJoin('usuarios', 'pedidos.id_usuario', '=', 'usuarios.id_usuario')
+            ->leftJoin('usuarios_direcciones', 'pedidos.id_direccion', '=', 'usuarios_direcciones.id_direccion')
+            ->leftJoin('pedidos_estados', 'pedidos_estados.id_pedido', '=', 'pedidos.id_pedido')
+            ->select('pedidos.id_pedido', 'pedidos.fecha_inicio', 'pedidos.fecha_fin', 'pedidos.fecha_entrega', 'usuarios.nombre as nombre_usuario', 'usuarios.apellidos', 'usuarios.email', 'usuarios_direcciones.direccion', 'usuarios_direcciones.provincia', 'usuarios_direcciones.poblacion', 'usuarios_direcciones.telefono', 'pedidos_estados.id_estado', 'pedidos_estados.observacion')
+            ->where('pedidos_estados.estado', 1)
+            ->where('pedidos.id_pedido', $id)
+            ->get();
+            return view('detalleFin', @compact('pedidos'));
+       
     }
 
     public function infpedidos()
