@@ -75,6 +75,8 @@
                         <p>{{$order->fecha_inicio}}</p>
                         <h5>Fecha fin::</h5>
                         <p>{{$order->fecha_entrega}}</p>
+                        <h5>Observacion:</h5>
+                        <p>{{$order->observacion}}</p>
                         @endforeach
                     </div>
                   </div>
@@ -105,7 +107,7 @@
                         <p>{{$order->apellidos}}</p>
                         <h5>Email:</h5>
                         <p>{{$order->email}}</p>
-
+                       
                         @endforeach
                     </div>
                   </div>
