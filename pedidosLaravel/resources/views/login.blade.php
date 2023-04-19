@@ -1,51 +1,98 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bootstrap Site</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+	<title>Login V3</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+@vite(['resources/js/app.js', 'resources/css/app.scss', 'resources/css/custom.css', 'resources/css/main.css','resources/js/main.js','resources/css/util.css',])
+
 </head>
 <body>
 
-    <div class="container d-flex justify-content-center mt-3">
-        <img src="{{URL::asset('Logo_QMado_Ver2_transp.png')}}" alt="Logo" id="logologin">
-    </div>
-<div class="container w-50 pt-5 mt-5 rounded bg-danger formulario pb-4">
-    <form method="post" action="{{route('inicia-sesion')}}" class="container text-white">
-        @csrf
-        <div class="form-outline mb-4">
-          <input name="usuario" type="email" class="form-control border border-3 border-dark"/>
-          <label class="form-label" for="usuario">Email</label>
-        </div>
-        <div class="form-outline mb-4">
-          <input name="contrasea" type="password" class="form-control border border-3 border-dark"/>
-          <label class="form-label" for="contrasea">Contraseña</label>
-        </div>
-        <div class="row mb-4">
-          <div class="col d-flex justify-content-center">
-            <!-- Checkbox -->
-            {{-- <div class="form-check">
-              <input class="form-check-input border border-3 border-dark" type="checkbox" value=""  />
-              <label class="form-check-label" for="form2Example31">Recordar datos</label>
-            </div> --}}
-          </div>
-          {{-- <div class="col">
-            <a href="#!">Olvidaste la contraseña</a>
-          </div> --}}
-        </div>
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url({{URL::asset('bg.jpeg')}});">
+			<div class="wrap-login100">
+                <form method="post" action="{{route('inicia-sesion')}}" class="login100-form validate-form">
+					@csrf
+                    <span class="login100-form-logo">
+                        <img class="logologin" src="{{URL::asset('Logo_QMado_Ver2_transp.png')}}" alt="Logo" id="logologin">
+					</span>
+
+					<span class="login100-form-title p-b-34 p-t-27">
+						Log in
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+						<input name="usuario" type="email" class="input100" placeholder="Email">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input name="contrasea" type="password" class="input100" placeholder="Contraseña">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="contact100-form-checkbox">
+						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+						<label class="label-checkbox100" for="ckb1">
+							Remember me
+						</label>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+                    @if($errors->any())
+                    <h4>{{$errors->first()}}</h4>
+                    @endif
+				</form>
+			</div>
+		</div>
+	</div>
 
 
-        <button type="submit" class="btn btn-light btn-block mb-4 border border-3 border-dark">Submit</button>
+	<div id="dropDownSelect1"></div>
 
-      </form>
-      @if($errors->any())
-<h4>{{$errors->first()}}</h4>
-@endif
-  </div>
-    </div>
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
 </body>
 </html>
