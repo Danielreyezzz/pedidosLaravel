@@ -22,9 +22,11 @@
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 <!--===============================================================================================-->
 @vite(['resources/js/app.js', 'resources/css/app.scss', 'resources/css/custom.css', 'resources/css/main.css','resources/js/main.js','resources/css/util.css',])
 
@@ -46,12 +48,12 @@
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						<input name="usuario" type="email" class="input100" placeholder="Email">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<input name="contrasea" type="password" class="input100" placeholder="Contraseña">
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+
 					</div>
 
 					<div class="contact100-form-checkbox">

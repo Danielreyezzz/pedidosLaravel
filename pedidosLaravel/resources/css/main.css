@@ -326,8 +326,7 @@ width: 90%!important;
 .focus-input100::after {
   font-family: Material-Design-Iconic-Font;
   font-size: 22px;
-  color: #fff;
-
+  color: #ffffff00!important;
   content: attr(data-placeholder);
   display: block;
   width: 100%;
@@ -344,8 +343,12 @@ width: 90%!important;
 
 .input100:focus {
   padding-left: 5px;
+  transition: .5s;
 }
-
+.input100:not(:focus) {
+    padding-right: 5px;
+    transition: .5s;
+}
 .input100:focus + .focus-input100::after {
   top: -22px;
   font-size: 18px;
