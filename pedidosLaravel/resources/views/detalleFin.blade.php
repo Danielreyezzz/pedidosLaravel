@@ -69,14 +69,13 @@
                   <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         @foreach ($pedidos as $order)
-                        <h5 class=" d-flex flex-column justify-content-end">ID:</h5>
-                        <p>{{$order->id_pedido}}</p>
-                        <h5>Fecha inicio:</h5>
-                        <p>{{$order->fecha_inicio}}</p>
-                        <h5>Fecha fin::</h5>
-                        <p>{{$order->fecha_entrega}}</p>
-                        <h5>Observacion:</h5>
-                        <p>{{$order->observacion}}</p>
+                      
+                        <h4 class=" text-danger">Fecha inicio:</h4>
+                        <h5 class=" text-black">{{$order->fecha_inicio}}</h5>
+                        <h4 class=" text-danger">Fecha fin::</h4>
+                        <h5 class=" text-black">{{$order->fecha_entrega}}</h5>
+                        <h4 class=" text-danger">Observacion:</h4>
+                        <h5 class=" text-black">{{$order->observacion}}</h5>
                         @endforeach
                     </div>
                   </div>
