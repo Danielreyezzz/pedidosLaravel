@@ -70,12 +70,12 @@
                   <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         @foreach ($pedidos as $order)
-                        <h4 class="text-danger">Fecha inicio:</h4>
-                        <h5 class="text-black ">{{$order->fecha_inicio}}</h5>
-                        <h4 class="text-danger">Fecha fin::</h4>
-                        <h5 class="text-black ">{{$order->fecha_entrega}}</h5>
-                        <h4 class=" text-danger">Observacion:</h4>
-                        <h5 class="text-black ">{{$order->observacion}}</h5>
+                        <h4 >Fecha inicio: <span class="text-black ">{{$order->fecha_inicio}}</span></h4>
+                        
+                        <h4>Fecha fin: <span class="text-black ">{{$order->fecha_entrega}}</span></h4>
+                        
+                        <h4>Observacion: <span class="text-black "></span>{{$order->observacion}}</h4>
+                        
 
                         @endforeach
                     </div>
@@ -92,20 +92,20 @@
                   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
                         @foreach ($pedidos as $order)
-                        <h4 class=" text-danger">Provincia:</h4>
-                        <h5>{{$order->provincia}}</h5>
-                        <h4 class=" text-danger">Poblacion:</h4>
-                        <h5>{{$order->poblacion}}</h5>
-                        <h4 class=" text-danger">Telefono:</h4>
-                        <h5>{{$order->telefono}}</h5>
-                        <h4 class=" text-danger">Direccion:</h4>
-                        <h5>{{$order->direccion}}</h5>
-                        <h4 class=" text-danger">Nombre:</h4>
-                        <h5>{{$order->nombre_usuario}}</h5>
-                        <h4 class=" text-danger">Apellidos:</h4>
-                        <h5>{{$order->apellidos}}</h5>
-                        <h4 class=" text-danger">Email:</h4>
-                        <h5>{{$order->email}}</h5>
+                        <h4>Provincia: <span>{{$order->provincia}}</span></h4>
+                        
+                        <h4>Poblacion: <span>{{$order->poblacion}}</span></h4>
+                        
+                        <h4>Telefono: <span>{{$order->telefono}}</span></h4>
+                        
+                        <h4>Direccion: <span>{{$order->direccion}}</span></h4>
+                        
+                        <h4>Nombre: <span>{{$order->nombre_usuario}}</span></h4>
+                        
+                        <h4>Apellidos: <span>{{$order->apellidos}}</span></h4>
+                        
+                        <h4>Email: <span>{{$order->email}}</span></h4>
+                        
 
                         @endforeach
                     </div>

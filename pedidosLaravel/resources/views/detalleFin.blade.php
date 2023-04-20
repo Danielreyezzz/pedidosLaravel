@@ -70,12 +70,12 @@
                     <div class="card-body">
                         @foreach ($pedidos as $order)
                       
-                        <h4 class=" text-danger">Fecha inicio:</h4>
-                        <h5 class=" text-black">{{$order->fecha_inicio}}</h5>
-                        <h4 class=" text-danger">Fecha fin::</h4>
-                        <h5 class=" text-black">{{$order->fecha_entrega}}</h5>
-                        <h4 class=" text-danger">Observacion:</h4>
-                        <h5 class=" text-black">{{$order->observacion}}</h5>
+                        <h4>Fecha inicio: <span class=" text-black">{{$order->fecha_inicio}}</span></h4>
+                        
+                        <h4>Fecha fin: <span class=" text-black"></span>{{$order->fecha_entrega}}</h4>
+                        
+                        <h4>Observacion: <span class=" text-black">{{$order->observacion}}</span></h4>
+                        
                         @endforeach
                     </div>
                   </div>
@@ -92,20 +92,20 @@
                     <div class="card-body">
                         
                         @foreach ($pedidos as $order)
-                        <h4 class=" text-danger">Provincia:</h4>
-                        <h5 class=" text-black">{{$order->provincia}}</h5>
-                        <h4 class=" text-danger">Poblacion:</h4>
-                        <h5 class=" text-black">{{$order->poblacion}}</h5>
-                        <h4 class=" text-danger">Telefono:</h4>
-                        <h5 class=" text-black">{{$order->telefono}}</h5>
-                        <h4 class=" text-danger">Direccion:</h4>
-                        <h5 class=" text-black">{{$order->direccion}}</h5>
-                        <h4 class=" text-danger">Nombre:</h4>
-                        <h5 class=" text-black">{{$order->nombre_usuario}}</h5>
-                        <h4 class=" text-danger">Apellidos:</h4>
-                        <h5 class=" text-black">{{$order->apellidos}}</h5>
-                        <h4 class=" text-danger">Email:</h4>
-                        <h5 class=" text-black">{{$order->email}}</h5>
+                        <h4 >Provincia: <span class=" text-black">{{$order->provincia}}</span></h4>
+                        
+                        <h4 >Poblacion: <span class=" text-black">{{$order->poblacion}}</span></h4>
+                        
+                        <h4 >Telefono: <span class=" text-black">{{$order->telefono}}</span></h4>
+                        
+                        <h4 >Direccion: <span class=" text-black">{{$order->direccion}}</span></h4>
+                        
+                        <h4 >Nombre: <span class=" text-black">{{$order->nombre_usuario}}</span></h4>
+                        
+                        <h4 >Apellidos: <span class=" text-black">{{$order->apellidos}}</span></h4>
+                        
+                        <h4>Email: <span class=" text-black">{{$order->email}}</span></h4>
+                        
                        
                         @endforeach
                     </div>
