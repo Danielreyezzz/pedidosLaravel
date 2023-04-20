@@ -92,20 +92,20 @@
                     <div class="card-body">
                         
                         @foreach ($pedidos as $order)
-                        <h5>Provincia:</h5>
-                        <p>{{$order->provincia}}</p>
-                        <h5>Poblacion:</h5>
-                        <p>{{$order->poblacion}}</p>
-                        <h5>Telefono:</h5>
-                        <p>{{$order->telefono}}</p>
-                        <h5>Direccion:</h5>
-                        <p>{{$order->direccion}}</p>
-                        <h5>Nombre:</h5>
-                        <p>{{$order->nombre_usuario}}</p>
-                        <h5>Apellidos:</h5>
-                        <p>{{$order->apellidos}}</p>
-                        <h5>Email:</h5>
-                        <p>{{$order->email}}</p>
+                        <h4 class=" text-danger">Provincia:</h4>
+                        <h5 class=" text-black">{{$order->provincia}}</h5>
+                        <h4 class=" text-danger">Poblacion:</h4>
+                        <h5 class=" text-black">{{$order->poblacion}}</h5>
+                        <h4 class=" text-danger">Telefono:</h4>
+                        <h5 class=" text-black">{{$order->telefono}}</h5>
+                        <h4 class=" text-danger">Direccion:</h4>
+                        <h5 class=" text-black">{{$order->direccion}}</h5>
+                        <h4 class=" text-danger">Nombre:</h4>
+                        <h5 class=" text-black">{{$order->nombre_usuario}}</h5>
+                        <h4 class=" text-danger">Apellidos:</h4>
+                        <h5 class=" text-black">{{$order->apellidos}}</h5>
+                        <h4 class=" text-danger">Email:</h4>
+                        <h5 class=" text-black">{{$order->email}}</h5>
                        
                         @endforeach
                     </div>
