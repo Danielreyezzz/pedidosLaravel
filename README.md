@@ -1,2 +1,2 @@
 # pedidosLaravel
-App de reparto con Laravel
+App de gestion para repartidores para VitualSoft Studios
